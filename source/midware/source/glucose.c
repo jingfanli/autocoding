@@ -552,14 +552,16 @@ uint Glucose_SetConfig
 			m_u16_ReferenceHCT = *((const uint16 *)u8p_Value);
 			DrvFLASH_Erase(DATA_ADDRESS_REFERENCE_HCT, sizeof(m_u16_ReferenceHCT));
 			DrvFLASH_Write(DATA_ADDRESS_REFERENCE_HCT, 
-				(const uint8 *)&m_u16_ReferenceHCT, sizeof(m_u16_ReferenceHCT));
+			(const uint8 *)&m_u16_ReferenceHCT, sizeof(m_u16_ReferenceHCT));
 			break;
 
 		case GLUCOSE_PARAM_HCT_WAVEFORM:
 
 			if (*((const uint *)u8p_Value) != 0)
 			{
+				
 				Glucose_EnableHCTWaveform();
+				
 			}
 			else
 			{
@@ -712,9 +714,10 @@ static void Glucose_EnableHCTWaveform(void)
 	uint i;
 	uint16 u16_Value;
 
+	DrvGPIO_Set(GPIO_CHANNEL_EN_BG);
 	DrvADC_Sample();
 	Drv_GetConfig(DRV_PARAM_VOLTAGE_VDD, (uint8 *)&u16_Value, (uint *)0);
-
+	DrvGPIO_Clear(GPIO_CHANNEL_EN_BG);
 	if (u16_Value == 0)
 	{
 		return;

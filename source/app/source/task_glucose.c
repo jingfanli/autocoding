@@ -54,7 +54,7 @@
 
 #define KETONE_LIMIT_DEFAULT			300
 #define GLUCOSE_UPPER_LIMIT_DEFAULT		600
-#define GLUCOSE_LOWER_LIMIT_DEFAULT		20
+#define GLUCOSE_LOWER_LIMIT_DEFAULT		10
 #define TEMPERATURE_UPPER_LIMIT_DEFAULT	450
 #define TEMPERATURE_LOWER_LIMIT_DEFAULT	50
 #define HCT_NBB_LIMIT_DEFAULT			50000
@@ -327,26 +327,18 @@ void TaskGlucose_Process
 	do 
 	{
 
-		re_cactu(&table[0]);
-                
+		re_cactu(&table[0]);  
         Glucose_re_initialize();
 		TaskGlucose_retransit(&table[0]);
-		/*VOICE_Start(21,10);
-        	DevOS_TaskDelay(270);
-        	Voice_closed();
-        	VOICE_Start(5,10);
-        	DevOS_TaskDelay(500);
-		Voice_closed();*/
-		//voice_merage(4,189);
-		
-                  Drv_EnablePower();
 		TaskGlucose_EnableGlucose();
 		ui_Value = GLUCOSE_MODE_HCT;
 		Glucose_SetConfig(GLUCOSE_PARAM_MODE, (const uint8 *)&ui_Value, 
 			sizeof(ui_Value));
 		ui_Value = 1;
+		
 		Glucose_SetConfig(GLUCOSE_PARAM_HCT_WAVEFORM, (const uint8 *)&ui_Value, 
 			sizeof(ui_Value));
+		
 		DevOS_TaskDelay(DELAY_NBB_TEST / 2);
 		Glucose_Sample();
 		m_t_TestData.u16_DataNBB = Glucose_Read(GLUCOSE_CHANNEL_HCT);
@@ -513,10 +505,10 @@ void TaskGlucose_Process
 		//Detect filling of blood
 		while (u16_Timer < TIMEOUT_FILL_DETECT)
 		{
-			if (TaskGlucose_CheckButtonControl() == FUNCTION_OK)
+			/*if (TaskGlucose_CheckButtonControl() == FUNCTION_OK)
 			{
 				u16_Timer = 0;
-			}
+			}*/
 
 			TaskGlucose_DisplayControl();
 
@@ -549,7 +541,7 @@ void TaskGlucose_Process
 				break;
 			}
 			
-			voice_merage(0,189);
+			voice_merage(0,0);
 			DevOS_TaskDelay(DELAY_FILL_DETECT);
 			Glucose_Sample();
 		}
