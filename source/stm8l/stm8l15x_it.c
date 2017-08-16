@@ -23,7 +23,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm8l15x_it.h"
 #include "drv_voice.h"
-#include "stm8l15x_tim4.h"
+#include "stm8l15x_tim2.h"
 #include "drv.h"
 
 /** @addtogroup STM8L15x_StdPeriph_Template
@@ -315,9 +315,10 @@ INTERRUPT_HANDLER(ADC1_COMP_IRQHandler,18)
   */
 INTERRUPT_HANDLER(TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler,19)
 {
-    /* In order to detect unexpected events during development,
-       it is recommended to set a breakpoint on the following instruction.
-    */
+	VOICE_Tick(1);
+	
+	TIM2_ClearITPendingBit(TIM2_IT_Update);
+
 }
 
 /**
@@ -387,9 +388,7 @@ INTERRUPT_HANDLER(TIM1_CC_IRQHandler,24)
   */
 INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler,25)
 {
-	VOICE_Tick(1);
-	
-	TIM4_ClearITPendingBit(TIM4_IT_Update);
+
 }
 /**
   * @brief SPI1 Interrupt routine.

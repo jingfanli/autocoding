@@ -9,7 +9,7 @@
 
 #include "drv_gpio.h"
 #include "drv_voice.h"
-#include "stm8l15x_tim4.h"
+#include "stm8l15x_tim2.h"
 
 #define voice_data             (DRV_GPIO_PORTC| DRV_GPIO_PIN3)
 #define voice_busy             (DRV_GPIO_PORTC| DRV_GPIO_PIN1)
@@ -183,7 +183,7 @@ void VOICE_Start
 	voice_settime = settingtime;
 	voice_flag = 1;
         
-        TIM4_Cmd(ENABLE);
+   TIM2_Cmd(ENABLE);
 	
 }
 
@@ -192,10 +192,10 @@ void VOICE_INIT(void)
 {	
 	disableInterrupts();
 	VOICE_init();
-	CLK_PeripheralClockConfig(CLK_Peripheral_TIM4, ENABLE);
-	TIM4_TimeBaseInit(TIM4_Prescaler_16, 5);
-   	TIM4_ClearFlag(TIM4_FLAG_Update);
-	TIM4_ITConfig(TIM4_IT_Update, ENABLE);
+	CLK_PeripheralClockConfig(CLK_Peripheral_TIM2, ENABLE);
+	TIM2_TimeBaseInit(TIM2_Prescaler_16,TIM2_CounterMode_Down,5);
+   	TIM2_ClearFlag(TIM2_FLAG_Update);
+	TIM2_ITConfig(TIM2_IT_Update, ENABLE);
 	
 	enableInterrupts();
 	//TIM4_Cmd(ENABLE);
@@ -277,7 +277,7 @@ uint8 get_vla(void)
 
 void Voice_closed(void)
 {
-	TIM4_Cmd(DISABLE);
+	TIM2_Cmd(DISABLE);
 	voice_count	= 0;
 	voice_settime = 0;
 	voice_flag = 0;

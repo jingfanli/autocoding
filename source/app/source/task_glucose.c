@@ -328,7 +328,7 @@ void TaskGlucose_Process
 	{
 
 		re_cactu(&table[0]);  
-        Glucose_re_initialize();
+                Glucose_re_initialize();
 		TaskGlucose_retransit(&table[0]);
 		TaskGlucose_EnableGlucose();
 		ui_Value = GLUCOSE_MODE_HCT;
@@ -541,18 +541,20 @@ void TaskGlucose_Process
 				break;
 			}
 			
-			voice_merage(0,0);
+			//voice_merage(0,0);
 			DevOS_TaskDelay(DELAY_FILL_DETECT);
 			Glucose_Sample();
 		}
 
+                
 		//Check if timeout of filling detection occurs
 		if ((m_ui_SignalPresentCount > SIGNAL_PRESENT_COUNT_MAX) ||
 			(u16_Timer >= TIMEOUT_FILL_DETECT))
 		{
 			break;
 		}
-
+                   
+                
 		DrvBEEP_Start(BLOOD_BEEP_COUNT, BLOOD_BEEP_ON_INTERVAL, 
 			BLOOD_BEEP_OFF_INTERVAL);
 		ui_Value = GLUCOSE_MODE_BG2;
@@ -567,6 +569,7 @@ void TaskGlucose_Process
 		//Test BG2
 		while (ui_TestDataIndex < DATA_COUNT_BG2_TEST)
 		{
+               
 			m_t_TestData.u16_DataBG2Test[ui_TestDataIndex] = 
 				Glucose_Read(GLUCOSE_CHANNEL_BG);
 
