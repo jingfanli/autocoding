@@ -1634,6 +1634,7 @@ static void TaskDevice_DisplayError(void)
 	DrvLCD_SetConfig(DRV_LCD_OFFSET_BATTERY, DRV_LCD_PARAM_BLINK,
 		(const uint8 *)&ui_Value);
 	TaskDevice_DisplayGlucose(TASK_DEVICE_ERROR_ID_BATTERY);
+	voice_merage(5,0);
 	m_u16_ErrorTimer = 0;
 }
 

@@ -328,7 +328,7 @@ void TaskGlucose_Process
 	{
 
 		re_cactu(&table[0]);  
-                Glucose_re_initialize();
+      	Glucose_re_initialize();
 		TaskGlucose_retransit(&table[0]);
 		TaskGlucose_EnableGlucose();
 		ui_Value = GLUCOSE_MODE_HCT;
@@ -510,7 +510,7 @@ void TaskGlucose_Process
 				u16_Timer = 0;
 			}*/
 
-			TaskGlucose_DisplayControl();
+			
 
 			m_t_TestData.u16_DataFillDetect[ui_TestDataIndex] = 
 				Glucose_Read(GLUCOSE_CHANNEL_BG);
@@ -718,11 +718,15 @@ void TaskGlucose_Process
 			(sint32)m_t_TestData.u16_Temperature - 
 			(sint32)tp_CodeGlucose->u16_Temperature);
 
+		TaskGlucose_DisplayControl();
+	if (REG_GET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_CONTROL) == 0)
+		{
 		if (s32_HCTFactor == 0)
 		{
 			TaskGlucose_DisplayHCTError();
 			DevOS_TaskDelay(DELAY_ERROR);
 			break;
+		}
 		}
 
 		m_t_TestData.u16_DataGlucose = 
@@ -1258,6 +1262,7 @@ static void TaskGlucose_DisplayTemperatureError(void)
 static void TaskGlucose_DisplayBG2Error(void)
 {
 	TaskDevice_DisplayGlucose(TASK_DEVICE_ERROR_ID_BG2);
+	voice_merage(6,0);
 }
 
 
@@ -1279,6 +1284,8 @@ static void TaskGlucose_DisplayStripError(void)
 	u8_LCDData = DRV_LCD_SYMBOL_OFF;
 	DrvLCD_Write(DRV_LCD_OFFSET_BLOOD, &u8_LCDData, sizeof(u8_LCDData));
 	TaskDevice_DisplayGlucose(TASK_DEVICE_ERROR_ID_STRIP);
+	voice_merage(6,0);
+	
 }
 
 
@@ -1714,6 +1721,14 @@ static sint32 TaskGlucose_CalculateHCTFactor
 	TaskGlucose_Multiply64Bit(u32_Operand);
 	TaskGlucose_Divide64Bit(u32_Operand, COEFFICIENT_RATIO / 10);
 	s32_HCTDelta = Glucose_Round(u32_Operand[1], 10);
+	if(s32_HCTDelta<7000)
+		{
+			REG_SET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_CONTROL);
+		}
+	else
+		{
+			REG_CLEAR_BIT(m_u16_Flag,TASK_GLUCOSE_FLAG_CONTROL);
+		}
 
 	if (s32_HCTDelta <= tp_CodeHCT->s32_ImpedanceRangeCode[0])
 	{
