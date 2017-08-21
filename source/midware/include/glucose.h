@@ -67,7 +67,7 @@ typedef enum
 
 //Function declaration
 uint Glucose_re_Initialize(void);
-uint Glucose_re8_back(void);
+
 
 void  re_cactu(uint16 *tab);
 

@@ -12,7 +12,7 @@
 #include "stm8l15x_tim2.h"
 
 #define voice_data             (DRV_GPIO_PORTC| DRV_GPIO_PIN3)
-#define voice_busy             (DRV_GPIO_PORTC| DRV_GPIO_PIN1)
+#define voice_busy             (DRV_GPIO_PORTC| DRV_GPIO_PIN7)
 #define voice_reset            (DRV_GPIO_PORTC| DRV_GPIO_PIN2)
 
 

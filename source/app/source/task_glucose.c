@@ -328,7 +328,7 @@ void TaskGlucose_Process
 	{
 
 		re_cactu(&table[0]);  
-      	Glucose_re_initialize();
+                Glucose_re_initialize();
 		TaskGlucose_retransit(&table[0]);
 		TaskGlucose_EnableGlucose();
 		ui_Value = GLUCOSE_MODE_HCT;
@@ -387,7 +387,7 @@ void TaskGlucose_Process
 		}
 		else
 		{
-			if (tp_CodeGlucose->u16_CodeNumber >= TASK_DEVICE_ERROR_ID_BASE)
+			 if (tp_CodeGlucose->u16_CodeNumber >= TASK_DEVICE_ERROR_ID_BASE)
 			{
 				if (REG_GET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_NO_CODE) == 0)
 				{
@@ -565,7 +565,7 @@ void TaskGlucose_Process
 		ui_TestDataCount = 0;
 		ui_TestDataIndex = 0;
 		m_ui_SignalPresentCount = 0;
-
+                DevOS_TaskDelay(DELAY_MODE_SWITCH);
 		//Test BG2
 		while (ui_TestDataIndex < DATA_COUNT_BG2_TEST)
 		{

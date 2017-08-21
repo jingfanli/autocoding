@@ -68,8 +68,8 @@ uint DrvADC_Initialize(void)
 	/* Initialize and configure ADC1 */
 	ADC1->CR2 |= ADC_CR2_PRESC | DRV_ADC_CLOCK_CYCLES_16;
 	ADC1->CR3 |= DRV_ADC_CLOCK_CYCLES_16 << 5;
-	ADC1->TRIGR[0] |= 0x00;
-	ADC1->TRIGR[2] |= 0x20;
+	ADC1->TRIGR[0] |= 0x0c;
+	ADC1->TRIGR[2] |= 0xa0;
 	ADC1->TRIGR[3] |= 0x80;
 
 	//Connect ADC to DMA channel 2

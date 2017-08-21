@@ -12,7 +12,7 @@
 
 //Constant definition
 
-#define GPIO_CHANNEL_PRESENT_N			(DRV_GPIO_PORTB| DRV_GPIO_PIN4)
+#define GPIO_CHANNEL_PRESENT_N			(DRV_GPIO_PORTB| DRV_GPIO_PIN3)
 #define GPIO_CHANNEL_TEST_BG			(DRV_GPIO_PORTI | DRV_GPIO_PIN0)
 #define GPIO_CHANNEL_EN_BG				(DRV_GPIO_PORTI| DRV_GPIO_PIN1)
 #define GPIO_CHANNEL_GND1				(DRV_GPIO_PORTF| DRV_GPIO_PIN4)
@@ -27,7 +27,7 @@
 #define GPIO_CHANNEL_RE3				(DRV_GPIO_PORTB| DRV_GPIO_PIN6)
 #define GPIO_CHANNEL_RE6				(DRV_GPIO_PORTB| DRV_GPIO_PIN7)
 #define GPIO_CHANNEL_RE8				(DRV_GPIO_PORTB| DRV_GPIO_PIN4)
-#define GPIO_CHANNEL_RE10				(DRV_GPIO_PORTC| DRV_GPIO_PIN0)
+#define GPIO_CHANNEL_RE10				(DRV_GPIO_PORTC| DRV_GPIO_PIN4)
 
 
 #define HCT_WAVEFORM_FREQUENCY			3
@@ -128,42 +128,50 @@ uint Glucose_re_initialize(void)
 		DrvGPIO_SetConfig(GPIO_CHANNEL_PRESENT_N, DRV_GPIO_PARAM_MODE, 
 			(const uint8 *)&ui_Value);
 	
-		DrvGPIO_SetConfig(GPIO_CHANNEL_ATC, DRV_GPIO_PARAM_MODE, 
-			(const uint8 *)&ui_Value);
+
 		DrvGPIO_SetConfig(GPIO_CHANNEL_RE2, DRV_GPIO_PARAM_MODE, 
 			(const uint8 *)&ui_Value);
 		DrvGPIO_SetConfig(GPIO_CHANNEL_RE3, DRV_GPIO_PARAM_MODE, 
 			(const uint8 *)&ui_Value);
 		DrvGPIO_SetConfig(GPIO_CHANNEL_RE6, DRV_GPIO_PARAM_MODE, 
 			(const uint8 *)&ui_Value);
-		DrvGPIO_SetConfig(GPIO_CHANNEL_GND1, DRV_GPIO_PARAM_MODE, 
-			(const uint8 *)&ui_Value);
+
 	
 		ui_Value = DRV_GPIO_MODE_OUTPUT;
 		
 		DrvGPIO_SetConfig(GPIO_CHANNEL_RE10, DRV_GPIO_PARAM_MODE, 
 				(const uint8 *)&ui_Value);
+		DrvGPIO_SetConfig(GPIO_CHANNEL_GND1, DRV_GPIO_PARAM_MODE, 
+			(const uint8 *)&ui_Value);
+		DrvGPIO_SetConfig(GPIO_CHANNEL_ATC, DRV_GPIO_PARAM_MODE, 
+			(const uint8 *)&ui_Value);
 	
 		ui_Value = 0;
 	
-		DrvGPIO_SetConfig(GPIO_CHANNEL_ATC, DRV_GPIO_PARAM_PULLUP, 
-			(const uint8 *)&ui_Value);
+	
 		DrvGPIO_SetConfig(GPIO_CHANNEL_RE2, DRV_GPIO_PARAM_PULLUP, 
 			(const uint8 *)&ui_Value);
 		DrvGPIO_SetConfig(GPIO_CHANNEL_RE3, DRV_GPIO_PARAM_PULLUP, 
 			(const uint8 *)&ui_Value);
 		DrvGPIO_SetConfig(GPIO_CHANNEL_RE6, DRV_GPIO_PARAM_PULLUP, 
 			(const uint8 *)&ui_Value);
-		DrvGPIO_SetConfig(GPIO_CHANNEL_GND1, DRV_GPIO_PARAM_PULLUP, 
-			(const uint8 *)&ui_Value);
+
 		DrvGPIO_SetConfig(GPIO_CHANNEL_PRESENT_N, DRV_GPIO_PARAM_PULLUP, 
 			(const uint8 *)&ui_Value);
 	
-		ui_Value = 0;
-			DrvGPIO_SetConfig(GPIO_CHANNEL_RE10, DRV_GPIO_PARAM_PULLUP, 
+		ui_Value = 1;
+		DrvGPIO_SetConfig(GPIO_CHANNEL_RE10, DRV_GPIO_PARAM_PULLUP, 
 				(const uint8 *)&ui_Value);
-	
-		DrvGPIO_Clear(GPIO_CHANNEL_RE10);
+		DrvGPIO_SetConfig(GPIO_CHANNEL_GND1, DRV_GPIO_PARAM_PULLUP, 
+			(const uint8 *)&ui_Value);
+		DrvGPIO_SetConfig(GPIO_CHANNEL_ATC, DRV_GPIO_PARAM_PULLUP, 
+			(const uint8 *)&ui_Value);
+
+		DrvGPIO_Set(GPIO_CHANNEL_ATC);
+		DrvGPIO_Clear(GPIO_CHANNEL_GND1);
+		DrvGPIO_Set(GPIO_CHANNEL_RE10);
+		
+		
 	}
 
 uint Glucose_re_back(void)
@@ -196,6 +204,10 @@ uint Glucose_re_back(void)
 
    DrvGPIO_SetConfig(GPIO_CHANNEL_ATC, DRV_GPIO_PARAM_PULLUP, 
 		(const uint8 *)&ui_Value);
+   DrvGPIO_SetConfig(GPIO_CHANNEL_RE10, DRV_GPIO_PARAM_PULLUP, 
+			(const uint8 *)&ui_Value);
+	DrvGPIO_SetConfig(GPIO_CHANNEL_GND1, DRV_GPIO_PARAM_PULLUP, 
+			(const uint8 *)&ui_Value);
 	ui_Value = 0;
 
  
@@ -208,96 +220,23 @@ uint Glucose_re_back(void)
 
 	DrvGPIO_SetConfig(GPIO_CHANNEL_PRESENT_N, DRV_GPIO_PARAM_PULLUP, 
 		(const uint8 *)&ui_Value);
-	DrvGPIO_SetConfig(GPIO_CHANNEL_RE10, DRV_GPIO_PARAM_PULLUP, 
-			(const uint8 *)&ui_Value);
-	DrvGPIO_SetConfig(GPIO_CHANNEL_GND1, DRV_GPIO_PARAM_PULLUP, 
-			(const uint8 *)&ui_Value);
+
         	
 
 	
-    DrvGPIO_Set(GPIO_CHANNEL_ATC);
-
-	
+    DrvGPIO_Clear(GPIO_CHANNEL_ATC);
 	DrvGPIO_Set(GPIO_CHANNEL_RE2);
 	DrvGPIO_Set(GPIO_CHANNEL_RE3);
 	DrvGPIO_Set(GPIO_CHANNEL_RE6);
 	DrvGPIO_Set(GPIO_CHANNEL_PRESENT_N);
-	DrvGPIO_Set(GPIO_CHANNEL_RE10);
-
-	DrvGPIO_Clear(GPIO_CHANNEL_GND1);
+	DrvGPIO_Clear(GPIO_CHANNEL_RE10);
+	DrvGPIO_Set(GPIO_CHANNEL_GND1);
  
       
 
 }
 
 
-uint Glucose_re8_back(void)
-	{
-		uint ui_Value;
-		uint16 u16_Value;
-	
-		ui_Value = DRV_GPIO_MODE_OUTPUT;
-	
-	
-		DrvGPIO_SetConfig(GPIO_CHANNEL_RE10, DRV_GPIO_PARAM_MODE, 
-				(const uint8 *)&ui_Value);
-	
-
-	
-		
-	
-		DrvGPIO_SetConfig(GPIO_CHANNEL_ATC, DRV_GPIO_PARAM_MODE, 
-			(const uint8 *)&ui_Value);
-		DrvGPIO_SetConfig(GPIO_CHANNEL_PRESENT_N, DRV_GPIO_PARAM_MODE, 
-			(const uint8 *)&ui_Value);
-	
-		DrvGPIO_SetConfig(GPIO_CHANNEL_GND1, DRV_GPIO_PARAM_MODE, 
-			(const uint8 *)&ui_Value);
-		DrvGPIO_SetConfig(GPIO_CHANNEL_RE2, DRV_GPIO_PARAM_MODE, 
-			(const uint8 *)&ui_Value);
-		DrvGPIO_SetConfig(GPIO_CHANNEL_RE3, DRV_GPIO_PARAM_MODE, 
-			(const uint8 *)&ui_Value);
-		DrvGPIO_SetConfig(GPIO_CHANNEL_RE6, DRV_GPIO_PARAM_MODE, 
-			(const uint8 *)&ui_Value);
-	
-
-	
-		
-		
-	
-	
-		ui_Value = 0;
-	
-		DrvGPIO_SetConfig(GPIO_CHANNEL_ATC, DRV_GPIO_PARAM_PULLUP, 
-			(const uint8 *)&ui_Value);
-		DrvGPIO_SetConfig(GPIO_CHANNEL_RE2, DRV_GPIO_PARAM_PULLUP, 
-			(const uint8 *)&ui_Value);
-		DrvGPIO_SetConfig(GPIO_CHANNEL_RE3, DRV_GPIO_PARAM_PULLUP, 
-			(const uint8 *)&ui_Value);
-		DrvGPIO_SetConfig(GPIO_CHANNEL_RE6, DRV_GPIO_PARAM_PULLUP, 
-			(const uint8 *)&ui_Value);
-	
-		DrvGPIO_SetConfig(GPIO_CHANNEL_PRESENT_N, DRV_GPIO_PARAM_PULLUP, 
-			(const uint8 *)&ui_Value);
-
-		
-		DrvGPIO_SetConfig(GPIO_CHANNEL_GND1, DRV_GPIO_PARAM_PULLUP, 
-				(const uint8 *)&ui_Value);
-	
-		
-		
-		DrvGPIO_SetConfig(GPIO_CHANNEL_RE10, DRV_GPIO_PARAM_PULLUP, 
-				(const uint8 *)&ui_Value);
-
-		DrvGPIO_Clear(GPIO_CHANNEL_RE10);
-		DrvGPIO_Set(GPIO_CHANNEL_ATC);
-		DrvGPIO_Set(GPIO_CHANNEL_RE2);
-		DrvGPIO_Set(GPIO_CHANNEL_RE3);
-		DrvGPIO_Set(GPIO_CHANNEL_RE6);
-		DrvGPIO_Set(GPIO_CHANNEL_PRESENT_N);
-		DrvGPIO_Set(GPIO_CHANNEL_GND1);
-	
-	}
 
 
 void re_cactu(uint16 *tab)
@@ -307,7 +246,6 @@ void re_cactu(uint16 *tab)
 		uint32 temp;
 		uint32 Val;
 		u16_Value=&m_u16_Re[channel_RE10];
-		Glucose_re8_back();
 		DrvADC_Enable();
 		DrvADC_Sample();
 		while (DrvADC_Read(DRV_ADC_CHANNEL_RE8,u16_Value)!= FUNCTION_OK)
@@ -334,30 +272,24 @@ void re_cactu(uint16 *tab)
 			;
 		}
 		temp=m_u16_Re[channel_RE10];
-		temp=(3600*temp)/(4096-temp);
-		temp=temp-20;
+		temp=(2000*temp)/(4096-temp);
+		temp=temp;
 		*tab=(uint16)temp;
-                temp=0;
-		for(i=1;i<5;i++)
-			{
-				temp+=((4096-m_u16_Re[i])/18);
-			}
-                        
-                    temp=temp/100;
-			temp=temp*28;
+        temp=0;
+
 		
 			
-			Val=m_u16_Re[channel_RE2];
-			Val=1800*(Val-temp)/(4096-Val);
+		Val=m_u16_Re[channel_RE2];
+			Val=1000*Val/(4096-Val);
 		*(tab+1)=(uint16)Val;
 			Val=m_u16_Re[channel_RE3];
-			Val=Val=1800*(Val-temp)/(4096-Val);
+			Val=1000*Val/(4096-Val);
 		*(tab+2)=Val;
 			 Val=m_u16_Re[channel_RE6];
-			Val=Val=1800*(Val-temp)/(4096-Val);
+			Val=1000*Val/(4096-Val);
 		*(tab+3)=Val;
 			 Val=m_u16_Re[channel_RE8];
-			Val=Val=1800*(Val-temp)/(4096-Val);
+			Val=1000*Val/(4096-Val);
 		*(tab+4)=Val;
 	}
 
@@ -373,7 +305,7 @@ uint Glucose_Initialize(void)
 
 
     
-   Glucose_re_initialize();
+   	
 	ui_Value = DRV_GPIO_MODE_INPUT;
 	DrvGPIO_SetConfig(GPIO_CHANNEL_PRESENT_N, DRV_GPIO_PARAM_MODE, 
 		(const uint8 *)&ui_Value);
@@ -406,14 +338,15 @@ uint Glucose_Initialize(void)
 	DrvGPIO_SetConfig(GPIO_CHANNEL_HCT1, DRV_GPIO_PARAM_PULLUP, 
 		(const uint8 *)&ui_Value);
 
-	DrvGPIO_SetConfig(GPIO_CHANNEL_PRESENT_N, DRV_GPIO_PARAM_INTERRUPT, 
-		(const uint8 *)&ui_Value);
+
 
 	DrvGPIO_Clear(GPIO_CHANNEL_TEST_BG);
 	DrvGPIO_Clear(GPIO_CHANNEL_EN_BG);
 	DrvGPIO_Clear(GPIO_CHANNEL_HCT1);
 
 	Glucose_re_initialize();
+	DrvGPIO_SetConfig(GPIO_CHANNEL_PRESENT_N, DRV_GPIO_PARAM_INTERRUPT, 
+		(const uint8 *)&ui_Value);
 
 	u16_Value = HCT_WAVEFORM_FREQUENCY * (sizeof(m_u16_HCT) / sizeof(uint16));
 	DrvDAC_SetConfig(DRV_DAC_PARAM_FREQUENCY, (const uint8 *)&u16_Value,
@@ -462,9 +395,9 @@ uint Glucose_SetConfig
 				case GLUCOSE_MODE_OFF:
 					DrvGPIO_Clear(GPIO_CHANNEL_HCT1);
 					DrvGPIO_Clear(GPIO_CHANNEL_EN_BG);
+					DrvGPIO_Set(GPIO_CHANNEL_GND1);
 					ui_Value = DRV_GPIO_MODE_OUTPUT;
-					DrvGPIO_SetConfig(GPIO_CHANNEL_GND1, DRV_GPIO_PARAM_MODE, 
-						(const void *)&ui_Value);
+
 					DrvGPIO_SetConfig(GPIO_CHANNEL_GND2, DRV_GPIO_PARAM_MODE, 
 						(const void *)&ui_Value);
 					break;
@@ -472,9 +405,9 @@ uint Glucose_SetConfig
 				case GLUCOSE_MODE_BG1:
 					DrvGPIO_Clear(GPIO_CHANNEL_HCT1);
 					DrvGPIO_Set(GPIO_CHANNEL_EN_BG);
-					ui_Value = DRV_GPIO_MODE_INPUT;
-					DrvGPIO_SetConfig(GPIO_CHANNEL_GND1, DRV_GPIO_PARAM_MODE, 
-						(const void *)&ui_Value);
+					DrvGPIO_Clear(GPIO_CHANNEL_GND1);
+					
+
 					ui_Value = DRV_GPIO_MODE_OUTPUT;
 					DrvGPIO_SetConfig(GPIO_CHANNEL_GND2, DRV_GPIO_PARAM_MODE, 
 						(const void *)&ui_Value);
@@ -483,9 +416,7 @@ uint Glucose_SetConfig
 				case GLUCOSE_MODE_BG2:
 					DrvGPIO_Clear(GPIO_CHANNEL_HCT1);
 					DrvGPIO_Set(GPIO_CHANNEL_EN_BG);
-					ui_Value = DRV_GPIO_MODE_OUTPUT;
-					DrvGPIO_SetConfig(GPIO_CHANNEL_GND1, DRV_GPIO_PARAM_MODE, 
-						(const void *)&ui_Value);
+					DrvGPIO_Set(GPIO_CHANNEL_GND1);
 					ui_Value = DRV_GPIO_MODE_INPUT;
 					DrvGPIO_SetConfig(GPIO_CHANNEL_GND2, DRV_GPIO_PARAM_MODE, 
 						(const void *)&ui_Value);
@@ -494,9 +425,7 @@ uint Glucose_SetConfig
 				case GLUCOSE_MODE_HCT:
 					DrvGPIO_Set(GPIO_CHANNEL_HCT1);
 					DrvGPIO_Clear(GPIO_CHANNEL_EN_BG);
-					ui_Value = DRV_GPIO_MODE_INPUT;
-					DrvGPIO_SetConfig(GPIO_CHANNEL_GND1, DRV_GPIO_PARAM_MODE, 
-						(const void *)&ui_Value);
+					DrvGPIO_Clear(GPIO_CHANNEL_GND1);
 					ui_Value = DRV_GPIO_MODE_OUTPUT;
 					DrvGPIO_SetConfig(GPIO_CHANNEL_GND2, DRV_GPIO_PARAM_MODE, 
 						(const void *)&ui_Value);

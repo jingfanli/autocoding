@@ -38,7 +38,7 @@ ShowSource=1
 [Simulator]
 Freq=16000000
 [DebugChecksum]
-Checksum=-660937352
+Checksum=2010501203
 [CallStack]
 ShowArgs=0
 [Disassembly]
@@ -46,7 +46,12 @@ MixedMode=1
 [array_types]
 Fmt0=uint16[20]	4	0
 [watch_formats]
-Fmt0={W}1:m_u16_Flag	4	0
+Fmt0={W}1:DRV_ADC_CHANNEL_BG	4	0
+Fmt1={W}1:DRV_ADC_CHANNEL_REF	4	0
+Fmt2={W}1:DRV_ADC_COUNT_CHANNEL	4	0
+Fmt3={W}1:GLUCOSE_CHANNEL_BG	4	0
+Fmt4={W}1:m_u16_Flag	4	0
+Fmt5={W}1:m_ui_SampleCount	4	0
 [DataSample]
 LogEnabled=0
 GraphEnabled=0
@@ -60,19 +65,17 @@ Category=_ 0
 LoggingEnabled=_ 0
 LogFile=_ ""
 [Breakpoints]
-Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\..\..\..\voice_8_9_10}.645.5" 0 0 0 0 "" 0 ""
-Bp1=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.957.4" 1 0 0 0 "" 0 ""
-Bp2=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.673.3" 1 0 0 0 "" 0 ""
-Bp3=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.514.3" 1 0 0 0 "" 0 ""
-Bp4=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.1378.4" 1 0 0 0 "" 0 ""
-Bp5=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.1387.3" 1 0 0 0 "" 0 ""
-Bp6=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.1399.4" 1 0 0 0 "" 0 ""
-Bp7=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.1406.3" 1 0 0 0 "" 0 ""
-Bp8=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.1418.3" 1 0 0 0 "" 0 ""
-Bp9=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.413.3" 1 0 0 0 "" 0 ""
-Bp10=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.1385.2" 1 0 0 0 "" 0 ""
-Bp11=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.1413.2" 1 0 0 0 "" 0 ""
-Count=12
+Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.783.4" 1 0 0 0 "" 0 ""
+Bp1=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.728.4" 1 0 0 0 "" 0 ""
+Bp2=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.709.4" 1 0 0 0 "" 0 ""
+Bp3=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.691.5" 1 0 0 0 "" 0 ""
+Bp4=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.665.4" 1 0 0 0 "" 0 ""
+Bp5=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.654.5" 1 0 0 0 "" 0 ""
+Bp6=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.606.5" 1 0 0 0 "" 0 ""
+Bp7=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.600.6" 1 0 0 0 "" 0 ""
+Bp8=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.554.4" 1 0 0 0 "" 0 ""
+Bp9=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.570.3" 1 0 0 0 "" 0 ""
+Count=10
 [Aliases]
 A0=_ "C:\Users\34553\Desktop\原版 自建1010\1010(原版)\source\app\source\task_device.c" "C:\Users\Administrator\Desktop\原版 自建1010\1010(原版)\source\app\source\task_device.c"
 A1=_ "C:\Users\Administrator\Desktop\原版 自建1010\新建文件夹\1010(原版) - 电阻可测 - 加入re8\source\stm8l\stm8l15x_it.c" "C:\Users\Administrator\Desktop\原版 自建1010\新建文件夹\1010(原版) - 电阻可测 - 加入re8-改为开漏\source\stm8l\stm8l15x_it.c"

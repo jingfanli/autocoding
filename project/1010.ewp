@@ -17,7 +17,7 @@
         <debug>1</debug>
         <option>
           <name>GenDeviceSelectMenu</name>
-          <state>STM8L151M8	STM8L151M8</state>
+          <state>STM8L152M8	STM8L152M8</state>
         </option>
         <option>
           <name>GenCodeModel</name>
@@ -83,7 +83,7 @@
         </option>
         <option>
           <name>GenStackSize</name>
-          <state>0x200</state>
+          <state>0x100</state>
         </option>
         <option>
           <name>GenHeapSize</name>
@@ -147,7 +147,7 @@
         </option>
         <option>
           <name>IccOptLevel</name>
-          <state>3</state>
+          <state>0</state>
         </option>
         <option>
           <name>IccOptStrategy</name>
@@ -156,12 +156,12 @@
         </option>
         <option>
           <name>IccOptLevelSlave</name>
-          <state>3</state>
+          <state>0</state>
         </option>
         <option>
           <name>IccOptAllowList</name>
           <version>0</version>
-          <state>110111</state>
+          <state>000000</state>
         </option>
         <option>
           <name>IccGenerateDebugInfo</name>
