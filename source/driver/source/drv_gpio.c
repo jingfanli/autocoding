@@ -38,7 +38,7 @@ static drv_gpio_callback m_t_Callback[DRV_GPIO_PIN_COUNT] = {0};
 uint DrvGPIO_Initialize(void)
 {
 	GPIOA->DDR = 0xFF;
-	GPIOB->DDR = 0xCF;
+	GPIOB->DDR = 0xC7;
 	GPIOC->DDR = 0xFC;
 	GPIOD->DDR = 0x3F;
 	GPIOE->DDR = 0xFF;
@@ -55,7 +55,7 @@ uint DrvGPIO_Initialize(void)
 	GPIOF->CR1 = 0xF2;
 	GPIOG->CR1 = 0xFF;
 	GPIOH->CR1 = 0xFF;
-	GPIOI->CR1 = 0xFF;
+	GPIOI->CR1 = 0xF7;
 
 	return FUNCTION_OK;
 }

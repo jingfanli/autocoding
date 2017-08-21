@@ -26,7 +26,7 @@
 #define GPIO_CHANNEL_RE2                (DRV_GPIO_PORTB| DRV_GPIO_PIN5)
 #define GPIO_CHANNEL_RE3				(DRV_GPIO_PORTB| DRV_GPIO_PIN6)
 #define GPIO_CHANNEL_RE6				(DRV_GPIO_PORTB| DRV_GPIO_PIN7)
-#define GPIO_CHANNEL_RE8				(DRV_GPIO_PORTB| DRV_GPIO_PIN4)
+#define GPIO_CHANNEL_RE8				(DRV_GPIO_PORTB| DRV_GPIO_PIN3)
 #define GPIO_CHANNEL_RE10				(DRV_GPIO_PORTC| DRV_GPIO_PIN4)
 
 
@@ -411,6 +411,7 @@ uint Glucose_SetConfig
 					ui_Value = DRV_GPIO_MODE_OUTPUT;
 					DrvGPIO_SetConfig(GPIO_CHANNEL_GND2, DRV_GPIO_PARAM_MODE, 
 						(const void *)&ui_Value);
+					DrvGPIO_Clear(GPIO_CHANNEL_GND2);
 					break;
 
 				case GLUCOSE_MODE_BG2:

@@ -708,8 +708,11 @@ void TaskGlucose_Process
 			DevOS_TaskDelay(DELAY_ERROR);
 			break;
 		}
-
+                Drv_EnablePower();
+                Glucose_Sample();
+                DevOS_TaskDelay(DELAY_MODE_SWITCH);
 		m_t_TestData.u16_Temperature = Glucose_Read(GLUCOSE_CHANNEL_NTC);
+                Drv_DisablePower();
 		TaskGlucose_DisableGlucose();
 
 		//Calculate HCT factor and blood glucose
@@ -728,7 +731,7 @@ void TaskGlucose_Process
 			break;
 		}
 		}
-
+                
 		m_t_TestData.u16_DataGlucose = 
 			TaskGlucose_CalculateGlucose(m_t_TestData.u16_DataBG1Last,
 			s32_HCTFactor, m_t_TestData.u16_Temperature);
