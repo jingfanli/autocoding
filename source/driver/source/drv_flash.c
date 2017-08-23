@@ -70,8 +70,8 @@ uint DrvFLASH_SetConfig
 	uint ui_Length
 )
 {
-	//¡¡/*switch (ui_Parameter)
-	/*{
+	switch (ui_Parameter)
+	{
 		case DRV_FLASH_PARAM_RESET:
 			Drv_DisableInterrupt();
 			DrvFLASH_Unlock(DRV_FLASH_ADDRESS_PROGRAM_BEGIN);
@@ -79,12 +79,11 @@ uint DrvFLASH_SetConfig
 			break;
 
 		default:
-			return FUNCTION_FAIL;*/
-	//}
+			return FUNCTION_FAIL;
+	}
 
 	return FUNCTION_OK;
 }
-
 
 uint DrvFLASH_GetConfig
 (
@@ -158,7 +157,7 @@ static void DrvFLASH_Lock
 	uint32 u32_Address
 )
 {
-/*#if DRV_FLASH_LOCK_ENABLE != 0
+#if DRV_FLASH_LOCK_ENABLE != 0
 	if ((u32_Address >= DRV_FLASH_ADDRESS_PROGRAM_USER) &&
 		(u32_Address <= DRV_FLASH_ADDRESS_PROGRAM_END))
 	{
@@ -187,7 +186,7 @@ static void DrvFLASH_Unlock
 	uint32 u32_Address
 )
 {
-/*#if DRV_FLASH_LOCK_ENABLE != 0
+#if DRV_FLASH_LOCK_ENABLE != 0
 	if ((u32_Address >= DRV_FLASH_ADDRESS_PROGRAM_USER) &&
 		(u32_Address <= DRV_FLASH_ADDRESS_PROGRAM_END))
 	{
@@ -209,7 +208,7 @@ static void DrvFLASH_Unlock
 			;
 		}
 	}
-#endif*/
+#endif
 }
 
 
@@ -219,7 +218,7 @@ static uint DrvFLASH_CheckAddress
 	uint32 u32_AddressEnd
 )
 {
-	/*if (u32_AddressBegin <= u32_AddressEnd)
+	if (u32_AddressBegin <= u32_AddressEnd)
 	{
 		if ((u32_AddressBegin >= DRV_FLASH_ADDRESS_DATA_BEGIN) &&
 			(u32_AddressEnd <= DRV_FLASH_ADDRESS_DATA_END))
@@ -240,7 +239,7 @@ static uint DrvFLASH_CheckAddress
 		}
 	}
 
-	return FUNCTION_FAIL;*/
+	return FUNCTION_FAIL;
 }
 
 
@@ -251,7 +250,7 @@ static uint DrvFLASH_Program
 	uint16 u16_Length
 )
 {
-	/*uint i;
+	uint i;
 
 
 	if (DrvFLASH_CheckAddress(u32_Address, u32_Address + u16_Length - 1) !=
@@ -335,7 +334,7 @@ static uint DrvFLASH_Program
 
 	DrvFLASH_Lock(u32_Address);
 
-	return FUNCTION_OK;*/
+	return FUNCTION_OK;
 }
 
 
