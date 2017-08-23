@@ -2097,9 +2097,6 @@ static void TaskGlucose_retransit(uint16 *tab )
 	
 	uint i;
 	
-    ui_Value = 1;
-	DrvUART_SetConfig(DRV_UART_DEVICE_ID_1, DRV_UART_PARAM_SWITCH, 
-		(const uint8 *)&ui_Value, sizeof(ui_Value));
 
 	for(i=0;i<5;i++)
 		{
