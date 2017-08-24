@@ -49,8 +49,8 @@ uint Button_Initialize(void)
 		ui_Value = 1;
 		DrvGPIO_SetConfig(m_ui_ButtonChannel[i], DRV_GPIO_PARAM_PULLUP, 
 			(const uint8 *)&ui_Value);
-		//DrvGPIO_SetConfig(m_ui_ButtonChannel[i], DRV_GPIO_PARAM_INTERRUPT, 
-			//(const uint8 *)&ui_Value);
+		DrvGPIO_SetConfig(m_ui_ButtonChannel[i], DRV_GPIO_PARAM_INTERRUPT, 
+			(const uint8 *)&ui_Value);
 
 		if (DrvGPIO_Read(m_ui_ButtonChannel[i]) != 0)
 		{

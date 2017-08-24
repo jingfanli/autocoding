@@ -540,13 +540,17 @@ void TaskGlucose_Process
 			{
 				break;
 			}
-			
-			//voice_merage(0,0);
+			if(V_flag==0)
+				{
+				//Drv_RefreshWatchdog();
+			voice_merage(0,0);
+				V_flag=1;
+				}
 			DevOS_TaskDelay(DELAY_FILL_DETECT);
 			Glucose_Sample();
 		}
 
-                
+         V_flag=0;       
 		//Check if timeout of filling detection occurs
 		if ((m_ui_SignalPresentCount > SIGNAL_PRESENT_COUNT_MAX) ||
 			(u16_Timer >= TIMEOUT_FILL_DETECT))
@@ -678,6 +682,7 @@ void TaskGlucose_Process
 		DevOS_TaskDelay(DELAY_MODE_SWITCH);
 		ui_TestDataIndex = 0;
 		m_ui_SignalPresentCount = 0;
+		//Drv_RefreshWatchdog();
 
 		//Test HCT
 		while (ui_TestDataIndex < DATA_COUNT_HCT_TEST)
@@ -813,13 +818,19 @@ void TaskGlucose_Process
 			V_value=(uint16)Glucose_Round(((sint32)V_value * 
 			GLUCOSE_MG_TO_MMOL_NUMERATOR), GLUCOSE_MG_TO_MMOL_DENOMINATOR);
 			if(REG_GET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_HYPO)!=0)
+                        {
+			//Drv_RefreshWatchdog();
 			voice_merage(3,V_value);
+                        }
 			else if(REG_GET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_HYPER)!=0)
-			voice_merage(2,V_value);
+                        {//Drv_RefreshWatchdog();
+			voice_merage(2,V_value);}
 			else if(REG_GET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_KETONE)!=0)
-			voice_merage(4,V_value);
+                        {//Drv_RefreshWatchdog();
+			voice_merage(4,V_value);}
 			else
-			voice_merage(1,V_value);
+                        {//Drv_RefreshWatchdog();
+			voice_merage(1,V_value);}
 			V_flag=1;
 				}
 			DevOS_TaskDelay(DELAY_TEST_FINISH);
@@ -1253,6 +1264,7 @@ static void TaskGlucose_DisplayNBBError(void)
 	DrvLCD_SetConfig(DRV_LCD_OFFSET_STRIP, DRV_LCD_PARAM_BLINK, 
 		(const uint8 *)&ui_Value);
 	TaskDevice_DisplayGlucose(TASK_DEVICE_ERROR_ID_NBB);
+	voice_merage(6,0);
 }
 
 
@@ -1265,6 +1277,7 @@ static void TaskGlucose_DisplayTemperatureError(void)
 static void TaskGlucose_DisplayBG2Error(void)
 {
 	TaskDevice_DisplayGlucose(TASK_DEVICE_ERROR_ID_BG2);
+	//Drv_RefreshWatchdog();
 	voice_merage(6,0);
 }
 
@@ -1287,6 +1300,7 @@ static void TaskGlucose_DisplayStripError(void)
 	u8_LCDData = DRV_LCD_SYMBOL_OFF;
 	DrvLCD_Write(DRV_LCD_OFFSET_BLOOD, &u8_LCDData, sizeof(u8_LCDData));
 	TaskDevice_DisplayGlucose(TASK_DEVICE_ERROR_ID_STRIP);
+	Drv_RefreshWatchdog();
 	voice_merage(6,0);
 	
 }
