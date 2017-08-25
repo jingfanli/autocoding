@@ -38,7 +38,7 @@ ShowSource=1
 [Simulator]
 Freq=16000000
 [DebugChecksum]
-Checksum=28873163
+Checksum=1163148636
 [CallStack]
 ShowArgs=0
 [Disassembly]
@@ -57,6 +57,15 @@ LogEnabled=0
 GraphEnabled=0
 ShowTimeLog=1
 ShowTimeSum=1
+[Breakpoints]
+Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.552.4" 1 0 0 0 "" 0 ""
+Bp1=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.454.3" 1 0 0 0 "" 0 ""
+Bp2=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.426.3" 1 0 0 0 "" 0 ""
+Bp3=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.446.3" 1 0 0 0 "" 0 ""
+Bp4=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.435.3" 1 0 0 0 "" 0 ""
+Bp5=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.456.4" 1 0 0 0 "" 0 ""
+Bp6=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.358.3" 1 0 0 0 "" 0 ""
+Count=7
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""
@@ -64,10 +73,6 @@ Category=_ 0
 [TermIOLog]
 LoggingEnabled=_ 0
 LogFile=_ ""
-[Breakpoints]
-Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.791.4" 1 0 0 0 "" 0 ""
-Bp1=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.801.6" 1 0 0 0 "" 0 ""
-Count=2
 [Aliases]
 A0=_ "C:\Users\34553\Desktop\原版 自建1010\1010(原版)\source\app\source\task_device.c" "C:\Users\Administrator\Desktop\原版 自建1010\1010(原版)\source\app\source\task_device.c"
 A1=_ "C:\Users\Administrator\Desktop\原版 自建1010\新建文件夹\1010(原版) - 电阻可测 - 加入re8\source\stm8l\stm8l15x_it.c" "C:\Users\Administrator\Desktop\原版 自建1010\新建文件夹\1010(原版) - 电阻可测 - 加入re8-改为开漏\source\stm8l\stm8l15x_it.c"

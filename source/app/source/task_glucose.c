@@ -330,6 +330,7 @@ void TaskGlucose_Process
 		re_cactu(&table[0]);  
                 Glucose_re_initialize();
 		TaskGlucose_retransit(&table[0]);
+               // Drv_RefreshWatchdog();
 		TaskGlucose_EnableGlucose();
 		ui_Value = GLUCOSE_MODE_HCT;
 		Glucose_SetConfig(GLUCOSE_PARAM_MODE, (const uint8 *)&ui_Value, 
@@ -542,10 +543,11 @@ void TaskGlucose_Process
 			}
 			if(V_flag==0)
 				{
-				//Drv_RefreshWatchdog();
+				Drv_RefreshWatchdog();
 			voice_merage(0,0);
 				V_flag=1;
 				}
+			Drv_RefreshWatchdog();
 			DevOS_TaskDelay(DELAY_FILL_DETECT);
 			Glucose_Sample();
 		}
@@ -819,17 +821,17 @@ void TaskGlucose_Process
 			GLUCOSE_MG_TO_MMOL_NUMERATOR), GLUCOSE_MG_TO_MMOL_DENOMINATOR);
 			if(REG_GET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_HYPO)!=0)
                         {
-			//Drv_RefreshWatchdog();
+			Drv_RefreshWatchdog();
 			voice_merage(3,V_value);
                         }
 			else if(REG_GET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_HYPER)!=0)
-                        {//Drv_RefreshWatchdog();
+                        {Drv_RefreshWatchdog();
 			voice_merage(2,V_value);}
 			else if(REG_GET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_KETONE)!=0)
-                        {//Drv_RefreshWatchdog();
+                        {Drv_RefreshWatchdog();
 			voice_merage(4,V_value);}
 			else
-                        {//Drv_RefreshWatchdog();
+                        {Drv_RefreshWatchdog();
 			voice_merage(1,V_value);}
 			V_flag=1;
 				}

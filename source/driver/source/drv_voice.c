@@ -220,11 +220,21 @@ void voice_merage(uint8 uivalue,uint16 input)
 				break;
 			case result_out:
 				VOICE_Start(21,10);
-				while(DrvGPIO_Read(voice_busy)==0);
-				while(DrvGPIO_Read(voice_busy)==1);
+				while(DrvGPIO_Read(voice_busy)==0)
+					{
+						Drv_RefreshWatchdog();
+					}
+				
+				while(DrvGPIO_Read(voice_busy)==1)
+					{
+						Drv_RefreshWatchdog();
+					}
 				VOICE_Start(2,10);
 				while(DrvGPIO_Read(voice_busy)==0);
-				while(DrvGPIO_Read(voice_busy)==1);
+				while(DrvGPIO_Read(voice_busy)==1)
+					{
+						Drv_RefreshWatchdog();
+					}
 				number_to_voice(input);
 				VOICE_Start(3,10);
 				//voice_merage1=15;
@@ -233,13 +243,19 @@ void voice_merage(uint8 uivalue,uint16 input)
 			case hight_bloodsugar:
 				VOICE_Start(21,10);
 				while(DrvGPIO_Read(voice_busy)==0);
-				while(DrvGPIO_Read(voice_busy)==1);
+				while(DrvGPIO_Read(voice_busy)==1)
+					{
+					Drv_RefreshWatchdog();
+					}
 				VOICE_Start(4,10);
 				break;
 			case low_bloddsuguar:
 				VOICE_Start(21,10);
 				while(DrvGPIO_Read(voice_busy)==0);
-				while(DrvGPIO_Read(voice_busy)==1);
+				while(DrvGPIO_Read(voice_busy)==1)
+					{
+					Drv_RefreshWatchdog();
+					}
 				VOICE_Start(5,10);
 				break;
 			case blood_ketone:
@@ -251,13 +267,19 @@ void voice_merage(uint8 uivalue,uint16 input)
 			case power_off:
 				VOICE_Start(21,10);
 				while(DrvGPIO_Read(voice_busy)==0);
-				while(DrvGPIO_Read(voice_busy)==1);
+				while(DrvGPIO_Read(voice_busy)==1)
+					{
+						Drv_RefreshWatchdog();
+					}
 				VOICE_Start(7,10);
 				break;
 			case error:
 				VOICE_Start(21,10);
 				while(DrvGPIO_Read(voice_busy)==0);
-				while(DrvGPIO_Read(voice_busy)==1);
+				while(DrvGPIO_Read(voice_busy)==1)
+					{
+					Drv_RefreshWatchdog();
+					}
 				VOICE_Start(8,10);
 				break;
 			default :

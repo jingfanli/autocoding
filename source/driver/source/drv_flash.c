@@ -70,7 +70,7 @@ uint DrvFLASH_SetConfig
 	uint ui_Length
 )
 {
-	switch (ui_Parameter)
+	/*switch (ui_Parameter)
 	{
 		case DRV_FLASH_PARAM_RESET:
 			Drv_DisableInterrupt();
@@ -80,7 +80,7 @@ uint DrvFLASH_SetConfig
 
 		default:
 			return FUNCTION_FAIL;
-	}
+	}*/
 
 	return FUNCTION_OK;
 }
@@ -126,7 +126,6 @@ uint DrvFLASH_Read
 		*u8p_Data++ = *u8p_Address++;
 		u16_Length--;
 	}
-
 	return FUNCTION_OK;
 }
 
@@ -156,7 +155,7 @@ static void DrvFLASH_Lock
 (
 	uint32 u32_Address
 )
-{
+{/*
 #if DRV_FLASH_LOCK_ENABLE != 0
 	if ((u32_Address >= DRV_FLASH_ADDRESS_PROGRAM_USER) &&
 		(u32_Address <= DRV_FLASH_ADDRESS_PROGRAM_END))
@@ -249,7 +248,7 @@ static uint DrvFLASH_Program
 	const uint8 *u8p_Data,
 	uint16 u16_Length
 )
-{
+{/*
 	uint i;
 
 
@@ -332,7 +331,7 @@ static uint DrvFLASH_Program
 		FLASH->CR2 &= ~FLASH_CR2_OPT;
 	}
 
-	DrvFLASH_Lock(u32_Address);
+	DrvFLASH_Lock(u32_Address);*/
 
 	return FUNCTION_OK;
 }

@@ -178,7 +178,7 @@ uint Drv_Initialize(void)
 	DrvDAC_Initialize();
 	DrvBEEP_Initialize();
 	DrvFLASH_Initialize();
-	//Drv_InitializeWatchdog();
+	Drv_InitializeWatchdog();
 	Drv_InitializeTestPort();
 	Drv_InitializeDelay();
 
@@ -406,13 +406,13 @@ void Drv_Sleep(void)
 {
 	if (m_ui_SleepMode == DRV_SLEEP_MODE_WAIT)
 	{
-		wfi();
+		//wfi();
 	}
 	else
 	{
-		CLK->CKDIVR = 0x01;
-		halt();
-		CLK->CKDIVR = 0x00;
+		//CLK->CKDIVR = 0x01;
+		//halt();
+		//CLK->CKDIVR = 0x00;
 	}
 }
 
