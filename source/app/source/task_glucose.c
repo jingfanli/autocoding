@@ -341,6 +341,7 @@ void TaskGlucose_Process
 		
 		DevOS_TaskDelay(DELAY_NBB_TEST / 2);
 		Glucose_Sample();
+		DevOS_TaskDelay(DELAY_MODE_SWITCH);
 		m_t_TestData.u16_DataNBB = Glucose_Read(GLUCOSE_CHANNEL_HCT);
 		ui_Value = 0;
 		Glucose_SetConfig(GLUCOSE_PARAM_HCT_WAVEFORM, (const uint8 *)&ui_Value, 
