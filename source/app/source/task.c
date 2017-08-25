@@ -432,6 +432,6 @@ static void Task_ProcessIdle
 	devos_task_handle t_TaskHandle
 )
 {
-	//Drv_RefreshWatchdog();
+	Drv_RefreshWatchdog();
 	Drv_Sleep();
 }
