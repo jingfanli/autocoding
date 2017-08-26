@@ -18,6 +18,7 @@
 
 static uint8 voice_flag=0;
 static uint8 voice_reset_flag=0;
+static uint8 mute_flag=0;
 
 
 
@@ -205,6 +206,9 @@ void VOICE_INIT(void)
 
 void voice_merage(uint8 uivalue,uint16 input)
 {
+
+	if(mute_flag)
+		{
 	switch(uivalue)
 		{
 			case strip_in :
@@ -291,6 +295,7 @@ void voice_merage(uint8 uivalue,uint16 input)
 				Voice_closed();
 				break;
 				
+		}
 		}
 
 }
@@ -381,3 +386,27 @@ void number_to_voice(uint16 input)
 					}
 		}
 }
+
+
+
+uint Drvvoice_SetConfig
+(
+	uint ui_Parameter,
+	const uint8 *u8p_Value,
+	uint ui_Length
+)
+{
+	switch(ui_Parameter)
+		{
+			case DRV_VOICE_PARAM_SWITCH:
+				if (*((const uint *)u8p_Value) == 0)
+					mute_flag=0;
+				else
+					mute_flag=1;
+				break;
+			 default:
+				break;
+		}
+	return FUNCTION_OK;
+}
+

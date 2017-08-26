@@ -282,7 +282,7 @@ uint TaskDevice_Initialize
 	{
 		ui_Value = 0;
 	}
-
+	Drvvoice_SetConfig(DRV_VOICE_PARAM_SWITCH,(const uint8 *)&ui_Value,sizeof(ui_Value));
 	DrvBEEP_SetConfig(DRV_BEEP_PARAM_SWITCH, (const uint8 *)&ui_Value, 
 		sizeof(ui_Value));
 	m_ui_State = TASK_DEVICE_STATE_SLEEP;
@@ -555,6 +555,7 @@ uint TaskDevice_SetConfig
 			REG_WRITE_FIELD(m_t_Setting.u8_Flag, TASK_DEVICE_SETTING_FLAG_AUDIO, 
 				REG_MASK_1_BIT, ui_Value);
 			DrvBEEP_SetConfig(DRV_BEEP_PARAM_SWITCH, u8p_Value, ui_Length);
+			Drvvoice_SetConfig(DRV_VOICE_PARAM_SWITCH,u8p_Value,ui_Length);
 			break;
 
 		case TASK_DEVICE_PARAM_TIME_FORMAT:

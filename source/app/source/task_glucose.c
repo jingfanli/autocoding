@@ -1648,8 +1648,8 @@ static uint16 TaskGlucose_CalculateGlucose
 			{
 				s32p_Coefficient2[i]=0;
 			}
-		s32p_Coefficient2[0]=3081930;
-		s32p_Coefficient2[1]=1382663;
+		s32p_Coefficient2[0]=1382663;
+		s32p_Coefficient2[1]=3081930;
 	}
 	if (REG_GET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_CONTROL) == 0)
 	s32_Glucose = TaskGlucose_Polynomial(tp_CodeGlucose->s32_GlucoseCode, 

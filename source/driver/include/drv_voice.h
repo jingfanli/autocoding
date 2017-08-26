@@ -21,6 +21,12 @@
 #include "drv_uart.h"
 #include "drv_flash.h"
 
+typedef enum
+{
+	
+	DRV_VOICE_PARAM_SWITCH=0,
+	DRV_VOICE_PARAM_CHANGE
+} drv_voice_param;
 
 
 void VOICE_init(void);
@@ -47,6 +53,12 @@ void VOICE_INIT(void);
 		
 	);*/
 
+uint Drvvoice_SetConfig
+(
+	uint ui_Parameter,
+	const uint8 *u8p_Value,
+	uint ui_Length
+);
 
 void voice_merage(uint8 uivalue,uint16 input);
 
