@@ -1603,6 +1603,8 @@ static uint16 TaskGlucose_CalculateGlucose
 	sint32 s32_FinalCurrent;
 	sint32 s32_Glucose;
 	task_glucose_code_glucose *tp_CodeGlucose;
+	sint32 s32p_Coefficient2[5];
+	uint i;
 
 
 	if (u16_BGCurrent > BG_CURRENT_MAX)
@@ -1642,9 +1644,19 @@ static uint16 TaskGlucose_CalculateGlucose
 			COEFFICIENT_RATIO), ((tp_CodeGlucose->s32_CurrentTemperatureCode[2][0] * 
 			(sint32)u16_Temperature) / GLUCOSE_TEMPERATURE_RATIO) + 
 			tp_CodeGlucose->s32_CurrentTemperatureCode[2][1]);
+		for(i=2;i<5;i++)
+			{
+				s32p_Coefficient2[i]=0;
+			}
+		s32p_Coefficient2[0]=3081930;
+		s32p_Coefficient2[1]=1382663;
 	}
-
+	if (REG_GET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_CONTROL) == 0)
 	s32_Glucose = TaskGlucose_Polynomial(tp_CodeGlucose->s32_GlucoseCode, 
+		s32_FinalCurrent, GLUCOSE_CURRENT_RATIO, 
+		sizeof(tp_CodeGlucose->s32_GlucoseCode) / sizeof(sint32));
+	else
+		s32_Glucose = TaskGlucose_Polynomial(&s32p_Coefficient2[0], 
 		s32_FinalCurrent, GLUCOSE_CURRENT_RATIO, 
 		sizeof(tp_CodeGlucose->s32_GlucoseCode) / sizeof(sint32));
 	s32_Glucose = Glucose_Round(s32_Glucose, COEFFICIENT_RATIO);
