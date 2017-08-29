@@ -411,7 +411,7 @@ uint Glucose_SetConfig
 					ui_Value = DRV_GPIO_MODE_OUTPUT;
 					DrvGPIO_SetConfig(GPIO_CHANNEL_GND2, DRV_GPIO_PARAM_MODE, 
 						(const void *)&ui_Value);
-					DrvGPIO_Clear(GPIO_CHANNEL_GND2);
+					DrvGPIO_Set(GPIO_CHANNEL_GND2);
 					break;
 
 				case GLUCOSE_MODE_BG2:
@@ -430,6 +430,7 @@ uint Glucose_SetConfig
 					ui_Value = DRV_GPIO_MODE_OUTPUT;
 					DrvGPIO_SetConfig(GPIO_CHANNEL_GND2, DRV_GPIO_PARAM_MODE, 
 						(const void *)&ui_Value);
+					DrvGPIO_Clear(GPIO_CHANNEL_GND2);
 					break;
 
 				default:

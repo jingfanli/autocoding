@@ -333,21 +333,33 @@ void number_to_voice(uint16 input)
 			xiao=input%10;
 				VOICE_Start((ge+8),10);
 				while(DrvGPIO_Read(voice_busy)==0);
-				while(DrvGPIO_Read(voice_busy)==1);
+				while(DrvGPIO_Read(voice_busy)==1)
+					{
+					Drv_RefreshWatchdog();
+					}
 				VOICE_Start(19,10);
 				while(DrvGPIO_Read(voice_busy)==0);
-				while(DrvGPIO_Read(voice_busy)==1);
+				while(DrvGPIO_Read(voice_busy)==1)
+					{
+					Drv_RefreshWatchdog();
+					}
 				if(xiao==0)
 					{
 					VOICE_Start(20,10);
 					while(DrvGPIO_Read(voice_busy)==0);
-					while(DrvGPIO_Read(voice_busy)==1);
+					while(DrvGPIO_Read(voice_busy)==1)
+						{
+						Drv_RefreshWatchdog();
+						}
 					}
 				else 
 					{
 					VOICE_Start((xiao+8),10);
 					while(DrvGPIO_Read(voice_busy)==0);
-					while(DrvGPIO_Read(voice_busy)==1);
+					while(DrvGPIO_Read(voice_busy)==1)
+						{
+						Drv_RefreshWatchdog();
+						}
 					}
 				Voice_closed();
 		}
@@ -358,7 +370,10 @@ void number_to_voice(uint16 input)
 			xiao=input%100;
 			VOICE_Start(18,10);
 			while(DrvGPIO_Read(voice_busy)==0);
-			while(DrvGPIO_Read(voice_busy)==1);
+			while(DrvGPIO_Read(voice_busy)==1)
+				{
+				Drv_RefreshWatchdog();
+				}
 			if(ge==0)
 				{
 					;
@@ -367,22 +382,34 @@ void number_to_voice(uint16 input)
 				{
 				VOICE_Start((ge+8),10);
 			while(DrvGPIO_Read(voice_busy)==0);
-			while(DrvGPIO_Read(voice_busy)==1);
+			while(DrvGPIO_Read(voice_busy)==1)
+				{
+				Drv_RefreshWatchdog();
+				}
 				}
 				VOICE_Start(19,10);
 				while(DrvGPIO_Read(voice_busy)==0);
-				while(DrvGPIO_Read(voice_busy)==1);
+				while(DrvGPIO_Read(voice_busy)==1)
+					{
+					Drv_RefreshWatchdog();
+					}
 			if(xiao==0)
 					{
 					VOICE_Start(20,10);
 					while(DrvGPIO_Read(voice_busy)==0);
-					while(DrvGPIO_Read(voice_busy)==1);
+					while(DrvGPIO_Read(voice_busy)==1)
+						{
+						Drv_RefreshWatchdog();
+						}
 					}
 				else 
 					{
 					VOICE_Start((xiao+8),10);
 					while(DrvGPIO_Read(voice_busy)==0);
-					while(DrvGPIO_Read(voice_busy)==1);
+					while(DrvGPIO_Read(voice_busy)==1)
+						{
+						Drv_RefreshWatchdog();
+						}
 					}
 		}
 }

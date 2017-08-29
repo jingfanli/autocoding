@@ -835,6 +835,7 @@ void TaskGlucose_Process
 			voice_merage(1,V_value);}
 			V_flag=1;
 				}
+			Drv_RefreshWatchdog();
 			DevOS_TaskDelay(DELAY_TEST_FINISH);
 		}
 	}

@@ -38,7 +38,7 @@ ShowSource=1
 [Simulator]
 Freq=16000000
 [DebugChecksum]
-Checksum=1505228749
+Checksum=989291041
 [CallStack]
 ShowArgs=0
 [Disassembly]
@@ -73,7 +73,7 @@ Bp4=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.440.4" 1 0 0 
 Bp5=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.456.4" 1 0 0 0 "" 0 ""
 Bp6=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.482.4" 1 0 0 0 "" 0 ""
 Bp7=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.421.4" 1 0 0 0 "" 0 ""
-Bp8=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.330.3" 1 0 0 0 "" 0 ""
+Bp8=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.838.4" 1 0 0 0 "" 0 ""
 Count=9
 [Aliases]
 A0=_ "C:\Users\34553\Desktop\原版 自建1010\1010(原版)\source\app\source\task_device.c" "C:\Users\Administrator\Desktop\原版 自建1010\1010(原版)\source\app\source\task_device.c"
