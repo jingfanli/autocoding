@@ -73,6 +73,8 @@ void  re_cactu(uint16 *tab);
 
 uint Glucose_Initialize(void);
 uint Glucose_re_back(void);
+void DrvGPIO_Clearre10(void);
+void DrvGPIO_Setre10(void);
 
 uint Glucose_SetConfig
 (

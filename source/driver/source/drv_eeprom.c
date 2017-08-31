@@ -47,7 +47,7 @@ uint DrvEEPROM_PollWriteDone(void);
 //Public function definition
 
 uint DrvEEPROM_Initialize(void)
-{
+{  /*
 	uint ui_Value;
 
 
@@ -58,7 +58,7 @@ uint DrvEEPROM_Initialize(void)
 	DrvGPIO_SetConfig(GPIO_CHANNEL_PRESENT_N, DRV_GPIO_PARAM_PULLUP, 
 		(const uint8 *)&ui_Value);
 
-	CLK->PCKENR1 |= CLK_PCKENR1_I2C1;
+	CLK->PCKENR1 |= CLK_PCKENR1_I2C1;*/
 
 	return FUNCTION_OK;
 }

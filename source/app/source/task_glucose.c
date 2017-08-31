@@ -328,20 +328,22 @@ void TaskGlucose_Process
 	{
 
 		re_cactu(&table[0]);  
-                Glucose_re_initialize();
+        Glucose_re_initialize();
+		DrvGPIO_Clearre10();
 		TaskGlucose_retransit(&table[0]);
 		TaskGlucose_EnableGlucose();
 		ui_Value = GLUCOSE_MODE_HCT;
 		Glucose_SetConfig(GLUCOSE_PARAM_MODE, (const uint8 *)&ui_Value, 
 			sizeof(ui_Value));
 		ui_Value = 1;
-		
+		Drv_RefreshWatchdog();
 		Glucose_SetConfig(GLUCOSE_PARAM_HCT_WAVEFORM, (const uint8 *)&ui_Value, 
 			sizeof(ui_Value));
 		
 		DevOS_TaskDelay(DELAY_NBB_TEST / 2);
 		Glucose_Sample();
 		DevOS_TaskDelay(DELAY_MODE_SWITCH);
+		Drv_RefreshWatchdog();
 		m_t_TestData.u16_DataNBB = Glucose_Read(GLUCOSE_CHANNEL_HCT);
 		ui_Value = 0;
 		Glucose_SetConfig(GLUCOSE_PARAM_HCT_WAVEFORM, (const uint8 *)&ui_Value, 
@@ -537,10 +539,12 @@ void TaskGlucose_Process
 
 			u16_Timer += (DELAY_FILL_DETECT / 10);
 
+			DrvGPIO_Setre10();
 			if (TaskGlucose_CheckSignalPresent() != FUNCTION_OK)
 			{
 				break;
 			}
+			DrvGPIO_Clearre10();
 			if(V_flag==0)
 				{
 				Drv_RefreshWatchdog();
@@ -606,12 +610,12 @@ void TaskGlucose_Process
 					break;
 				}
 			}
-
+			DrvGPIO_Setre10();
 			if (TaskGlucose_CheckSignalPresent() != FUNCTION_OK)
 			{
 				break;
 			}
-
+			DrvGPIO_Clearre10();
 			DevOS_TaskDelay(DELAY_BG2_TEST);
 			Glucose_Sample();
 		}
@@ -626,6 +630,7 @@ void TaskGlucose_Process
 		}
 		V_flag=0;
 		ui_Value = GLUCOSE_MODE_BG1;
+		//DrvGPIO_Clearre10();
 		Glucose_SetConfig(GLUCOSE_PARAM_MODE, (const uint8 *)&ui_Value,
 			sizeof(ui_Value));
 		DevOS_TaskDelay(DELAY_MODE_SWITCH);
@@ -654,12 +659,12 @@ void TaskGlucose_Process
 			}
 
 			ui_TestDataIndex++;
-
+			DrvGPIO_Setre10();
 			if (TaskGlucose_CheckSignalPresent() != FUNCTION_OK)
 			{
 				break;
 			}
-
+			DrvGPIO_Clearre10();
 			DevOS_TaskDelay(DELAY_BG1_TEST);
 			Glucose_Sample();
 		}
@@ -676,6 +681,7 @@ void TaskGlucose_Process
 		ui_Value = GLUCOSE_MODE_HCT;
 		Glucose_SetConfig(GLUCOSE_PARAM_MODE, (const uint8 *)&ui_Value, 
 			sizeof(ui_Value));
+		//DrvGPIO_Clearre10();
 		Drv_EnablePower();
 		DevOS_TaskDelay(DELAY_MODE_SWITCH);
 		ui_Value = 1;
@@ -684,6 +690,7 @@ void TaskGlucose_Process
 		DevOS_TaskDelay(DELAY_MODE_SWITCH);
 		ui_TestDataIndex = 0;
 		m_ui_SignalPresentCount = 0;
+                DevOS_TaskDelay(DELAY_MODE_SWITCH);
 		//Drv_RefreshWatchdog();
 
 		//Test HCT
@@ -692,12 +699,12 @@ void TaskGlucose_Process
 			m_t_TestData.u16_DataHCTTest[ui_TestDataIndex] = 
 				Glucose_Read(GLUCOSE_CHANNEL_HCT);
 			ui_TestDataIndex++;
-
+			DrvGPIO_Setre10();
 			if (TaskGlucose_CheckSignalPresent() != FUNCTION_OK)
 			{
 				break;
 			}
-
+			DrvGPIO_Clearre10();
 			DevOS_TaskDelay(DELAY_HCT_TEST);
 		}
 
@@ -707,6 +714,7 @@ void TaskGlucose_Process
 		ui_Value = GLUCOSE_MODE_OFF;
 		Glucose_SetConfig(GLUCOSE_PARAM_MODE, (const uint8 *)&ui_Value, 
 			sizeof(ui_Value));
+		//DrvGPIO_Setre10();
 		Drv_DisablePower();
 		
 		if (m_ui_SignalPresentCount > SIGNAL_PRESENT_COUNT_MAX)
@@ -807,12 +815,12 @@ void TaskGlucose_Process
 				TaskGlucose_DisplayPound();
 				TaskGlucose_DisplayMeal();
 			}
-
+			DrvGPIO_Setre10();
 			if (TaskGlucose_CheckSignalPresent() != FUNCTION_OK)
 			{
 				break;
 			}
-
+			DrvGPIO_Clearre10();
 			u16_Timer += (DELAY_TEST_FINISH / 10);
 			if(V_flag==0)
 				{
