@@ -540,6 +540,7 @@ void TaskGlucose_Process
 			u16_Timer += (DELAY_FILL_DETECT / 10);
 
 			DrvGPIO_Setre10();
+            DevOS_TaskDelay(DELAY_MODE_SWITCH);
 			if (TaskGlucose_CheckSignalPresent() != FUNCTION_OK)
 			{
 				break;

@@ -157,6 +157,7 @@ static void DrvFLASH_Lock
 	uint32 u32_Address
 )
 {
+
 #if DRV_FLASH_LOCK_ENABLE != 0
 	if ((u32_Address >= DRV_FLASH_ADDRESS_PROGRAM_USER) &&
 		(u32_Address <= DRV_FLASH_ADDRESS_PROGRAM_END))
@@ -177,7 +178,7 @@ static void DrvFLASH_Lock
 			;
 		}
 	}
-#endif*/
+#endif
 }
 
 

@@ -367,7 +367,7 @@ void number_to_voice(uint16 input)
 		{
 			shi=input/100;
 			ge=(input/10)%10;
-			xiao=input%100;
+			xiao=(input%100)%10;
 			VOICE_Start(18,10);
 			while(DrvGPIO_Read(voice_busy)==0);
 			while(DrvGPIO_Read(voice_busy)==1)
