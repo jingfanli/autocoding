@@ -398,7 +398,7 @@ uint Glucose_SetConfig
 				switch (*((const uint*)u8p_Value))
 				{
 					case GLUCOSE_MODE_OFF:
-						DrvGPIO_Set(GPIO_CHANNEL_HCT1);
+						DrvGPIO_Clear(GPIO_CHANNEL_HCT1);
 						DrvGPIO_Clear(GPIO_CHANNEL_EN_BG);
 						DrvGPIO_Set(GPIO_CHANNEL_GND1);
 						

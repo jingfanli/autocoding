@@ -38,11 +38,13 @@ ShowSource=1
 [Simulator]
 Freq=16000000
 [DebugChecksum]
-Checksum=1109500797
+Checksum=-637186328
 [CallStack]
 ShowArgs=0
 [Disassembly]
 MixedMode=1
+[DebuggerSettings]
+DisableInterruptsWhenStepping=0
 [array_types]
 Fmt0=uint16[20]	4	0
 [watch_formats]
@@ -52,25 +54,24 @@ Fmt2={W}1:DRV_ADC_COUNT_CHANNEL	4	0
 Fmt3={W}1:GLUCOSE_CHANNEL_BG	4	0
 Fmt4={W}1:m_u16_Flag	4	0
 Fmt5={W}1:m_ui_SampleCount	4	0
-[TermIOLog]
-LoggingEnabled=_ 0
-LogFile=_ ""
 [DataSample]
 LogEnabled=0
 GraphEnabled=0
 ShowTimeLog=1
 ShowTimeSum=1
 [Breakpoints]
-Count=0
+Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\source\app\source\task_glucose.c}.802.4" 1 0 0 0 "" 0 ""
+Count=1
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""
 Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
 [Aliases]
 A0=_ "C:\Users\34553\Desktop\原版 自建1010\1010(原版)\source\app\source\task_device.c" "C:\Users\Administrator\Desktop\原版 自建1010\1010(原版)\source\app\source\task_device.c"
 A1=_ "C:\Users\Administrator\Desktop\原版 自建1010\新建文件夹\1010(原版) - 电阻可测 - 加入re8\source\stm8l\stm8l15x_it.c" "C:\Users\Administrator\Desktop\原版 自建1010\新建文件夹\1010(原版) - 电阻可测 - 加入re8-改为开漏\source\stm8l\stm8l15x_it.c"
 A2=_ "F:\voice_8_8_23\voice_8_8\voice_8_8\source\library\library\source\lib_queue.c" "F:\voice_8_10_11\voice_8_8\voice_8_8\source\library\library\source\lib_queue.c"
 Count=3
 SuppressDialog=1
-[DebuggerSettings]
-DisableInterruptsWhenStepping=0

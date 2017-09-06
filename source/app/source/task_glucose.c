@@ -819,7 +819,9 @@ void TaskGlucose_Process
 			DrvGPIO_Setre10();
 			if (TaskGlucose_CheckSignalPresent() != FUNCTION_OK)
 			{
+				V_flag=0;
 				break;
+				
 			}
 			DrvGPIO_Clearre10();
 			u16_Timer += (DELAY_TEST_FINISH / 10);
@@ -849,7 +851,7 @@ void TaskGlucose_Process
 		}
 	}
 	while(0); 
-
+	V_flag=0;
 	TaskGlucose_QuitTask(t_TaskHandle);
 	
 	DEVOS_TASK_END
