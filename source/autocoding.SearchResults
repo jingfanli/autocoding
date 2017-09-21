@@ -1,0 +1,4 @@
+---- DATA_COUNT_BG2_DELAY Matches (3 in 1 files) ----
+Task_glucose.c (app\source):#define DATA_COUNT_BG2_DELAY			0
+Task_glucose.c (app\source):			if (ui_TestDataIndex >= DATA_COUNT_BG2_DELAY)
+Task_glucose.c (app\source):			if (ui_TestDataIndex >= DATA_COUNT_BG2_DELAY)
