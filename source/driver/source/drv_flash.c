@@ -179,6 +179,7 @@ static void DrvFLASH_Lock
 		}
 	}
 #endif
+
 }
 
 
@@ -335,8 +336,10 @@ static uint DrvFLASH_Program
 	}
 
 	DrvFLASH_Lock(u32_Address);
+	
 
 	return FUNCTION_OK;
+	
 }
 
 

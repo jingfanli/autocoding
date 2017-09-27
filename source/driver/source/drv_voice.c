@@ -212,13 +212,13 @@ void voice_merage(uint8 uivalue,uint16 input)
 	switch(uivalue)
 		{
 			case strip_in :
-				VOICE_Start(21,10);
+				VOICE_Start(21+2,10);
 				while(DrvGPIO_Read(voice_busy)==0);
 				while(DrvGPIO_Read(voice_busy)==1)
 					{
 						Drv_RefreshWatchdog();
 					}
-				VOICE_Start(0,10);
+				VOICE_Start(0+2,10);
 				while(DrvGPIO_Read(voice_busy)==0);
 				while(DrvGPIO_Read(voice_busy)==1)
 					{
@@ -229,68 +229,70 @@ void voice_merage(uint8 uivalue,uint16 input)
 				//voice_merage1=15;
 				break;
 			case result_out:
-				VOICE_Start(21,10);
+				VOICE_Start(21+2,10);
 				while(DrvGPIO_Read(voice_busy)==0);
 				while(DrvGPIO_Read(voice_busy)==1)
 					{
 					Drv_RefreshWatchdog();
 					}
-				VOICE_Start(2,10);
+				VOICE_Start(2+2,10);
 				while(DrvGPIO_Read(voice_busy)==0);
 				while(DrvGPIO_Read(voice_busy)==1)
 					{
 					Drv_RefreshWatchdog();
 					}
 				number_to_voice(input);
-				VOICE_Start(3,10);
+				VOICE_Start(3+2,10);
 				//voice_merage1=15;
 
 				break;
 			case hight_bloodsugar:
-				VOICE_Start(21,10);
+				VOICE_Start(21+2,10);
 				while(DrvGPIO_Read(voice_busy)==0);
 				while(DrvGPIO_Read(voice_busy)==1)
 					{
 					Drv_RefreshWatchdog();
 					}
-				VOICE_Start(4,10);
+				VOICE_Start(4+2,10);
 				break;
 			case low_bloddsuguar:
-				VOICE_Start(21,10);
+				VOICE_Start(21+2,10);
 				while(DrvGPIO_Read(voice_busy)==0);
 				while(DrvGPIO_Read(voice_busy)==1)
 					{
 					Drv_RefreshWatchdog();
 					}
-				VOICE_Start(5,10);
+				VOICE_Start(5+2,10);
 				break;
 			case blood_ketone:
-				VOICE_Start(21,10);
+				VOICE_Start(21+2,10);
 				while(DrvGPIO_Read(voice_busy)==0);
 				while(DrvGPIO_Read(voice_busy)==1)
 					{
 					Drv_RefreshWatchdog();
 					}
-				VOICE_Start(6,10);
+				VOICE_Start(6+2,10);
 				break;
 			case power_off:
-				VOICE_Start(21,10);
+				VOICE_Start(21+2,10);
 				while(DrvGPIO_Read(voice_busy)==0);
 				while(DrvGPIO_Read(voice_busy)==1)
 					{
 					Drv_RefreshWatchdog();
 					}
-				VOICE_Start(7,10);
+				VOICE_Start(7+2,10);
 				break;
 			case error:
-				VOICE_Start(21,10);
+				VOICE_Start(21+2,10);
 				while(DrvGPIO_Read(voice_busy)==0);
 				while(DrvGPIO_Read(voice_busy)==1)
 					{
 					Drv_RefreshWatchdog();
 					}
-				VOICE_Start(8,10);
+				VOICE_Start(8+2,10);
 				break;
+			case bi:
+				VOICE_Start(21+2,10);
 			default :
 				Voice_closed();
 				break;
@@ -331,13 +333,13 @@ void number_to_voice(uint16 input)
 		{
 			ge=input/10;
 			xiao=input%10;
-				VOICE_Start((ge+8),10);
+				VOICE_Start((ge+8+2),10);
 				while(DrvGPIO_Read(voice_busy)==0);
 				while(DrvGPIO_Read(voice_busy)==1)
 					{
 					Drv_RefreshWatchdog();
 					}
-				VOICE_Start(19,10);
+				VOICE_Start(19+2,10);
 				while(DrvGPIO_Read(voice_busy)==0);
 				while(DrvGPIO_Read(voice_busy)==1)
 					{
@@ -345,7 +347,7 @@ void number_to_voice(uint16 input)
 					}
 				if(xiao==0)
 					{
-					VOICE_Start(20,10);
+					VOICE_Start(20+2,10);
 					while(DrvGPIO_Read(voice_busy)==0);
 					while(DrvGPIO_Read(voice_busy)==1)
 						{
@@ -354,7 +356,7 @@ void number_to_voice(uint16 input)
 					}
 				else 
 					{
-					VOICE_Start((xiao+8),10);
+					VOICE_Start((xiao+8+2),10);
 					while(DrvGPIO_Read(voice_busy)==0);
 					while(DrvGPIO_Read(voice_busy)==1)
 						{
@@ -368,7 +370,7 @@ void number_to_voice(uint16 input)
 			shi=input/100;
 			ge=(input/10)%10;
 			xiao=(input%100)%10;
-			VOICE_Start(18,10);
+			VOICE_Start(18+2,10);
 			while(DrvGPIO_Read(voice_busy)==0);
 			while(DrvGPIO_Read(voice_busy)==1)
 				{
@@ -380,14 +382,14 @@ void number_to_voice(uint16 input)
 				}
 			else
 				{
-				VOICE_Start((ge+8),10);
+				VOICE_Start((ge+8+2),10);
 			while(DrvGPIO_Read(voice_busy)==0);
 			while(DrvGPIO_Read(voice_busy)==1)
 				{
 				Drv_RefreshWatchdog();
 				}
 				}
-				VOICE_Start(19,10);
+				VOICE_Start(19+2,10);
 				while(DrvGPIO_Read(voice_busy)==0);
 				while(DrvGPIO_Read(voice_busy)==1)
 					{
@@ -395,7 +397,7 @@ void number_to_voice(uint16 input)
 					}
 			if(xiao==0)
 					{
-					VOICE_Start(20,10);
+					VOICE_Start(20+2,10);
 					while(DrvGPIO_Read(voice_busy)==0);
 					while(DrvGPIO_Read(voice_busy)==1)
 						{
@@ -404,7 +406,7 @@ void number_to_voice(uint16 input)
 					}
 				else 
 					{
-					VOICE_Start((xiao+8),10);
+					VOICE_Start((xiao+8+2),10);
 					while(DrvGPIO_Read(voice_busy)==0);
 					while(DrvGPIO_Read(voice_busy)==1)
 						{

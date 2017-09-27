@@ -97,6 +97,7 @@ typedef enum
 	blood_ketone,
 	power_off,
 	error,
+	bi,
 	voice_amount
 	
 	

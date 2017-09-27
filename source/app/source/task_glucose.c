@@ -317,7 +317,8 @@ void TaskGlucose_Process
 	uint16 table[20]={0};
 	static uint16  V_value;
 	static uint8  V_flag=0;
-
+	static uint8 REerror_flag=0;
+	uint i;
 
 	DEVOS_TASK_BEGIN
 
@@ -326,10 +327,30 @@ void TaskGlucose_Process
 
 	do 
 	{
-
-		re_cactu(&table[0]);  
-        Glucose_re_initialize();
+		Glucose_re_initialize();
+		re_cactu(&table[0]); 
+		for(i=0;i<5;i++)
+			{
+				if((*(table+i)/(*table))>9)
+					{
+						REerror_flag=1;
+					}
+			}
+        Glucose_re_initialize();       
 		DrvGPIO_Clearre10();
+		if (REerror_flag==1)
+		{
+	
+            REerror_flag=0;
+			Drv_DisablePower();
+			DevOS_TaskDelay(DELAY_NBB_TEST);
+			TaskGlucose_DisplayCodeError();
+            voice_merage(6,0);
+			DevOS_TaskDelay(DELAY_ERROR);
+			REerror_flag=0;
+			Glucose_re_initialize();
+			break;
+		}
 		TaskGlucose_retransit(&table[0]);
 		TaskGlucose_EnableGlucose();
 		ui_Value = GLUCOSE_MODE_HCT;
@@ -401,6 +422,7 @@ void TaskGlucose_Process
 				DevOS_TaskDelay(DELAY_NBB_TEST);
 				TaskGlucose_DisplayCodeError();
 				DevOS_TaskDelay(DELAY_ERROR);
+				Glucose_re_initialize();
 				break;
 			}
 		}
@@ -421,6 +443,7 @@ void TaskGlucose_Process
 			DevOS_TaskDelay(DELAY_NBB_TEST);
 			TaskGlucose_DisplayTemperatureError();
 			DevOS_TaskDelay(DELAY_ERROR);
+			Glucose_re_initialize();
 			break;
 		}
 
@@ -430,6 +453,7 @@ void TaskGlucose_Process
 			DevOS_TaskDelay(DELAY_NBB_TEST);
 			TaskGlucose_DisplayNBBError();
 			DevOS_TaskDelay(DELAY_ERROR);
+			Glucose_re_initialize();
 			break;
 		}
 
@@ -442,6 +466,7 @@ void TaskGlucose_Process
 			DevOS_TaskDelay(DELAY_NBB_TEST);
 			TaskGlucose_DisplayNBBError();
 			DevOS_TaskDelay(DELAY_ERROR);
+			Glucose_re_initialize();
 			break;
 		}
 
@@ -457,6 +482,7 @@ void TaskGlucose_Process
 		{
 			TaskGlucose_DisplayNBBError();
 			DevOS_TaskDelay(DELAY_ERROR);
+			Glucose_re_initialize();
 			break;
 		}
 
@@ -483,6 +509,7 @@ void TaskGlucose_Process
 		{
 			TaskGlucose_DisplayNBBError();
 			DevOS_TaskDelay(DELAY_ERROR);
+			Glucose_re_initialize();
 			break;
 		}
 
@@ -562,6 +589,7 @@ void TaskGlucose_Process
 		if ((m_ui_SignalPresentCount > SIGNAL_PRESENT_COUNT_MAX) ||
 			(u16_Timer >= TIMEOUT_FILL_DETECT))
 		{
+		Glucose_re_initialize();
 			break;
 		}
                    
@@ -627,6 +655,7 @@ void TaskGlucose_Process
 		{
 			TaskGlucose_DisplayBG2Error();
 			DevOS_TaskDelay(DELAY_ERROR);
+			Glucose_re_initialize();
 			break;
 		}
 		V_flag=0;
@@ -674,6 +703,7 @@ void TaskGlucose_Process
 		{
 			TaskGlucose_DisplayStripError();
 			DevOS_TaskDelay(DELAY_ERROR);
+			Glucose_re_initialize();
 			break;
 		}
 
@@ -722,6 +752,7 @@ void TaskGlucose_Process
 		{
 			TaskGlucose_DisplayStripError();
 			DevOS_TaskDelay(DELAY_ERROR);
+			Glucose_re_initialize();
 			break;
 		}
                 Drv_EnablePower();
@@ -744,6 +775,7 @@ void TaskGlucose_Process
 		{
 			TaskGlucose_DisplayHCTError();
 			DevOS_TaskDelay(DELAY_ERROR);
+			Glucose_re_initialize();
 			break;
 		}
 		}
@@ -759,6 +791,7 @@ void TaskGlucose_Process
 			FUNCTION_OK)
 		{
 			DevOS_TaskDelay(DELAY_ERROR);
+			Glucose_re_initialize();
 			break;
 		}
 
@@ -1265,6 +1298,7 @@ static void TaskGlucose_DisplayCodeError(void)
 	DrvLCD_SetConfig(DRV_LCD_OFFSET_CODE, DRV_LCD_PARAM_BLINK, 
 		(const uint8 *)&ui_Value);
 	TaskDevice_DisplayGlucose(TASK_DEVICE_ERROR_ID_CODE);
+	
 }
 
 

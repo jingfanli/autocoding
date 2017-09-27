@@ -1,4 +1,8 @@
----- DATA_COUNT_BG2_DELAY Matches (3 in 1 files) ----
-Task_glucose.c (app\source):#define DATA_COUNT_BG2_DELAY			0
-Task_glucose.c (app\source):			if (ui_TestDataIndex >= DATA_COUNT_BG2_DELAY)
-Task_glucose.c (app\source):			if (ui_TestDataIndex >= DATA_COUNT_BG2_DELAY)
+---- DrvBEEP_Start Matches (7 in 4 files) ----
+Drv_beep.c (driver\source):void DrvBEEP_Start
+Drv_beep.h (driver\include):void DrvBEEP_Start
+Task_device.c (app\source):				DrvBEEP_Start(WAKEUP_BEEP_COUNT, WAKEUP_BEEP_ON_INTERVAL,
+Task_device.c (app\source):		DrvBEEP_Start(ERROR_BEEP_COUNT, ERROR_BEEP_ON_INTERVAL, 
+Task_device.c (app\source):		DrvBEEP_Start(ALARM_BEEP_COUNT, ALARM_BEEP_ON_INTERVAL,
+Task_glucose.c (app\source):		DrvBEEP_Start(BLOOD_BEEP_COUNT, BLOOD_BEEP_ON_INTERVAL, 
+Task_glucose.c (app\source):		DrvBEEP_Start(READING_BEEP_COUNT, READING_BEEP_ON_INTERVAL, 

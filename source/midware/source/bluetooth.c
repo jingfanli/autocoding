@@ -63,16 +63,16 @@ uint Bluetooth_Initialize(void)
 		ui_Value = DRV_GPIO_MODE_OUTPUT;
 	}
 
-	DrvGPIO_SetConfig(GPIO_CHANNEL_INT, DRV_GPIO_PARAM_MODE, 
-		(const uint8 *)&ui_Value);
+	//DrvGPIO_SetConfig(GPIO_CHANNEL_INT, DRV_GPIO_PARAM_MODE, 
+	//	(const uint8 *)&ui_Value);
 	DrvGPIO_SetConfig(GPIO_CHANNEL_LED, DRV_GPIO_PARAM_MODE, 
 		(const uint8 *)&ui_Value);
 	ui_Value = 1;
 	DrvGPIO_SetConfig(GPIO_CHANNEL_EN_BT_N, DRV_GPIO_PARAM_PULLUP, 
 		(const uint8 *)&ui_Value);
 	ui_Value = 0;
-	DrvGPIO_SetConfig(GPIO_CHANNEL_INT, DRV_GPIO_PARAM_PULLUP, 
-		(const uint8 *)&ui_Value);
+	//DrvGPIO_SetConfig(GPIO_CHANNEL_INT, DRV_GPIO_PARAM_PULLUP, 
+	//	(const uint8 *)&ui_Value);
 	DrvGPIO_SetConfig(GPIO_CHANNEL_LED, DRV_GPIO_PARAM_PULLUP, 
 		(const uint8 *)&ui_Value);
 

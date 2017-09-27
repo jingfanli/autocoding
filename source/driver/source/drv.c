@@ -406,13 +406,13 @@ void Drv_Sleep(void)
 {
 	if (m_ui_SleepMode == DRV_SLEEP_MODE_WAIT)
 	{
-		wfi();
+		//wfi();
 	}
 	else
 	{
-		CLK->CKDIVR = 0x01;
-		halt();
-		CLK->CKDIVR = 0x00;
+		//CLK->CKDIVR = 0x01;
+	//	halt();
+	//	CLK->CKDIVR = 0x00;
 	}
 }
 
@@ -436,6 +436,8 @@ void Drv_RefreshWatchdog(void)
 #if WATCHDOG_ENABLE != 0
 	IWDG->KR = WATCHDOG_KEY_REFRESH;
 #endif
+
+
 }
 
 
