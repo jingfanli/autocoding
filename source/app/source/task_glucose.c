@@ -28,7 +28,7 @@
 #define DATA_COUNT_HCT_TEST				10
 #define DATA_COUNT_BG1_TEST				50
 #define DATA_COUNT_BG2_TEST				30
-#define DATA_COUNT_BG2_DELAY			0
+#define DATA_COUNT_BG2_DELAY			5
 #define DATA_COUNT_FILL_DETECT			3
 #define DATA_COUNT_ABOVE_BG2_LIMIT		3
 #define DATA_COUNT_HCT_CHECK			5
@@ -1199,12 +1199,15 @@ static uint TaskGlucose_DisplayGlucose
 		DrvLCD_Write(DRV_LCD_OFFSET_HYPER, &u8_LCDData, sizeof(u8_LCDData));
 	}
 
+	if (REG_GET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_CONTROL) == 0)
+		{
 	if ((u16_Glucose > m_u16_KetoneLimit) && 
 		(REG_GET_BIT(m_t_Setting.u8_Switch, TASK_GLUCOSE_SWITCH_KETONE) != 0))
 	{
 		REG_SET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_KETONE);
 		DrvLCD_Write(DRV_LCD_OFFSET_KETONE, &u8_LCDData, sizeof(u8_LCDData));
 	}
+		}
 
 	if (REG_GET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_MMOL) != 0)
 	{

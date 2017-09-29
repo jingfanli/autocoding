@@ -1,8 +1,6 @@
----- DrvBEEP_Start Matches (7 in 4 files) ----
-Drv_beep.c (driver\source):void DrvBEEP_Start
-Drv_beep.h (driver\include):void DrvBEEP_Start
-Task_device.c (app\source):				DrvBEEP_Start(WAKEUP_BEEP_COUNT, WAKEUP_BEEP_ON_INTERVAL,
-Task_device.c (app\source):		DrvBEEP_Start(ERROR_BEEP_COUNT, ERROR_BEEP_ON_INTERVAL, 
-Task_device.c (app\source):		DrvBEEP_Start(ALARM_BEEP_COUNT, ALARM_BEEP_ON_INTERVAL,
-Task_glucose.c (app\source):		DrvBEEP_Start(BLOOD_BEEP_COUNT, BLOOD_BEEP_ON_INTERVAL, 
-Task_glucose.c (app\source):		DrvBEEP_Start(READING_BEEP_COUNT, READING_BEEP_ON_INTERVAL, 
+---- TASK_GLUCOSE_FLAG_KETONE Matches (5 in 3 files) ----
+Task_glucose.c (app\source):			else if(REG_GET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_KETONE)!=0)
+Task_glucose.c (app\source):	REG_CLEAR_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_KETONE);
+Task_glucose.c (app\source):		REG_SET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_KETONE);
+Task_glucose.h (app\include):	TASK_GLUCOSE_FLAG_KETONE,
+Task_history.c (app\source):	if (REG_GET_BIT(u16_Flag, TASK_GLUCOSE_FLAG_KETONE) != 0)

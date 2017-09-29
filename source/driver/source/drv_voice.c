@@ -293,6 +293,7 @@ void voice_merage(uint8 uivalue,uint16 input)
 				break;
 			case bi:
 				VOICE_Start(21+2,10);
+				break;
 			default :
 				Voice_closed();
 				break;
@@ -438,4 +439,13 @@ uint Drvvoice_SetConfig
 		}
 	return FUNCTION_OK;
 }
-
+void mutesave(uint16*temp)
+{
+	*temp=mute_flag;
+	mute_flag=1;
+}
+void muteback(uint16*temp)
+{
+	mute_flag=*temp;
+	
+}

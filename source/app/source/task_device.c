@@ -332,6 +332,7 @@ void TaskDevice_Process
 	static uint8 u8_MessageData;
 	static uint8 *u8p_MessageData;
 	static devos_int t_MessageLength;
+	//static uint16 temp;
 
 
 	DEVOS_TASK_BEGIN
@@ -404,7 +405,9 @@ void TaskDevice_Process
 					(const uint8 *)&ui_Value);
 				DrvBEEP_Start(WAKEUP_BEEP_COUNT, WAKEUP_BEEP_ON_INTERVAL,
 					WAKEUP_BEEP_OFF_INTERVAL);
+				//mutesave(&temp);
 				voice_merage(7,0);
+				//muteback(&temp);
 				DevOS_TaskDelay(DISPLAY_RESET_DELAY);
 				
 				if (ui_Bluetooth != 0)

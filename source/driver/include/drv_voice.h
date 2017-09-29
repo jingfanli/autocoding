@@ -102,6 +102,8 @@ typedef enum
 	
 	
 }VOICE_SWITC;
+void mutesave(uint16*temp);
+void muteback(uint16*temp);
 
 
 
