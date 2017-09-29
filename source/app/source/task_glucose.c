@@ -24,7 +24,7 @@
 
 
 //Constant definition
-
+#define DATA_COUNT_RE_TEST 				5
 #define DATA_COUNT_HCT_TEST				10
 #define DATA_COUNT_BG1_TEST				50
 #define DATA_COUNT_BG2_TEST				30
@@ -144,6 +144,7 @@ typedef struct
 	uint16 u16_DataFillDetect[DATA_COUNT_FILL_DETECT];
 	uint16 u16_Reserved[1];
 	uint16 u16_DataHCTTest[DATA_COUNT_HCT_TEST];
+	uint16 re_result[DATA_COUNT_RE_TEST];
 } task_glucose_test_data;
 
 
@@ -331,11 +332,14 @@ void TaskGlucose_Process
 		re_cactu(&table[0]); 
 		for(i=0;i<5;i++)
 			{
+				m_t_TestData.re_result[ui_TestDataIndex]=*(table+i);
 				if((*(table+i)/(*table))>9)
 					{
 						REerror_flag=1;
 					}
+				ui_TestDataIndex++;
 			}
+		ui_TestDataIndex=0;
         Glucose_re_initialize();       
 		DrvGPIO_Clearre10();
 		if (REerror_flag==1)
