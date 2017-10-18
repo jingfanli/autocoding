@@ -1,6 +1,6 @@
----- TASK_GLUCOSE_FLAG_KETONE Matches (5 in 3 files) ----
-Task_glucose.c (app\source):			else if(REG_GET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_KETONE)!=0)
-Task_glucose.c (app\source):	REG_CLEAR_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_KETONE);
-Task_glucose.c (app\source):		REG_SET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_KETONE);
-Task_glucose.h (app\include):	TASK_GLUCOSE_FLAG_KETONE,
-Task_history.c (app\source):	if (REG_GET_BIT(u16_Flag, TASK_GLUCOSE_FLAG_KETONE) != 0)
+---- TaskGlucose_DisplayCodeError Matches (5 in 1 files) ----
+Task_glucose.c (app\source):static void TaskGlucose_DisplayCodeError(void);
+Task_glucose.c (app\source):			TaskGlucose_DisplayCodeError();
+Task_glucose.c (app\source):			TaskGlucose_DisplayCodeError();
+Task_glucose.c (app\source):				TaskGlucose_DisplayCodeError();
+Task_glucose.c (app\source):static void TaskGlucose_DisplayCodeError(void)

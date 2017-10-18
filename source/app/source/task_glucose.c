@@ -37,6 +37,7 @@
 #define COUNT_DOWN_BG1_TEST				5
 
 #define DELAY_MODE_SWITCH				200
+#define DELAY_MODE_BGSWITCH				20
 #define DELAY_NBB_TEST					1000
 #define DELAY_EARLY_FILL_TEST			100
 #define DELAY_FILL_DETECT				100
@@ -567,7 +568,7 @@ void TaskGlucose_Process
 			u16_Timer += (DELAY_FILL_DETECT / 10);
 
 			DrvGPIO_Setre10();
-            DevOS_TaskDelay(DELAY_MODE_SWITCH);
+            DevOS_TaskDelay(DELAY_MODE_BGSWITCH);
 			if (TaskGlucose_CheckSignalPresent() != FUNCTION_OK)
 			{
 				break;
@@ -599,7 +600,7 @@ void TaskGlucose_Process
 		ui_Value = GLUCOSE_MODE_BG2;
 		Glucose_SetConfig(GLUCOSE_PARAM_MODE, (const uint8 *)&ui_Value, 
 			sizeof(ui_Value));
-		DevOS_TaskDelay(DELAY_MODE_SWITCH);
+		DevOS_TaskDelay(DELAY_MODE_BGSWITCH);
 		Glucose_Sample();
 		ui_TestDataCount = 0;
 		ui_TestDataIndex = 0;
@@ -663,7 +664,7 @@ void TaskGlucose_Process
 		//DrvGPIO_Clearre10();
 		Glucose_SetConfig(GLUCOSE_PARAM_MODE, (const uint8 *)&ui_Value,
 			sizeof(ui_Value));
-		DevOS_TaskDelay(DELAY_MODE_SWITCH);
+		DevOS_TaskDelay(DELAY_MODE_BGSWITCH);
 		Glucose_Sample();
 		ui_TestDataIndex = 0;
 		ui_TestDataCount = COUNT_DOWN_BG1_TEST + 1;
@@ -860,22 +861,27 @@ void TaskGlucose_Process
 			u16_Timer += (DELAY_TEST_FINISH / 10);
 			if(V_flag==0)
 				{
+				DevOS_TaskDelay(500);
 			V_value=m_t_TestData.u16_DataGlucose;
 			V_value=(uint16)Glucose_Round(((sint32)V_value * 
 			GLUCOSE_MG_TO_MMOL_NUMERATOR), GLUCOSE_MG_TO_MMOL_DENOMINATOR);
 			if(REG_GET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_HYPO)!=0)
                         {
 			Drv_RefreshWatchdog();
+			DrvBEEP_Stop();
 			voice_merage(3,V_value);
                         }
 			else if(REG_GET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_HYPER)!=0)
                         {Drv_RefreshWatchdog();
+			DrvBEEP_Stop();
 			voice_merage(2,V_value);}
 			else if(REG_GET_BIT(m_u16_Flag, TASK_GLUCOSE_FLAG_KETONE)!=0)
                         {Drv_RefreshWatchdog();
+			DrvBEEP_Stop();
 			voice_merage(4,V_value);}
 			else
                         {Drv_RefreshWatchdog();
+			DrvBEEP_Stop();
 			voice_merage(1,V_value);}
 			V_flag=1;
 				}
@@ -1336,6 +1342,7 @@ static void TaskGlucose_DisplayBG2Error(void)
 static void TaskGlucose_DisplayHCTError(void)
 {
 	TaskDevice_DisplayGlucose(TASK_DEVICE_ERROR_ID_HCT);
+	voice_merage(6,0);
 }
 
 
