@@ -10,6 +10,7 @@
 
 /*
 9.21 缩短滴入血样到倒计时的时间
+
 */
 
 
@@ -17,7 +18,7 @@
 int main(void)
 {
 	
-        Drv_Initialize();
+    Drv_Initialize();
 	Task_Initialize();
 	Task_Process();
 	
